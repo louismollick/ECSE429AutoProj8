@@ -7,6 +7,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse.BodyHandlers;
 
+import com.ecse429.autoproj8.BaseTestClass;
 import com.ecse429.autoproj8.models.Todo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -17,7 +18,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 // PUT /todos/:id
-public class Todos_id__PUT {
+public class Todos_id__PUT extends BaseTestClass {
 
   private static final int ID = 1;
   private static final String TODOS_URL = API_URI + "/todos/" + ID;

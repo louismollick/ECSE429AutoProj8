@@ -1,4 +1,4 @@
-package com.ecse429.autoproj8.todos.todos_id_categories;
+package com.ecse429.autoproj8.todos.todos_id_tasksof;
 
 import java.io.IOException;
 import java.net.URI;
@@ -7,18 +7,16 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse.BodyHandlers;
 
-import com.ecse429.autoproj8.BaseTestClass;
-
-import static com.ecse429.autoproj8.ECSE429AutoProj8Tests.API_URI;
-import static org.junit.Assert.assertFalse;
-
 import org.junit.Test;
 
-public class Todos_id_categories_POST_malformed extends BaseTestClass {
+import static com.ecse429.autoproj8.ECSE429AutoProj8Tests.API_URI;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+public class Todos_id_tasksof_POST_malformed {
   @Test
   public void todosCreateTaskMalformedJSON() throws IOException, InterruptedException {
     var validId = 1; // Any todo that exists
-    var TODO_TASKSOF_URI = API_URI + "/todos/" + validId + "/categories";
+    var TODO_TASKSOF_URI = API_URI + "/todos/" + validId + "/tasksof";
 
     var malformed = "{ \"hi\": \"bud\" }";
 
@@ -28,6 +26,6 @@ public class Todos_id_categories_POST_malformed extends BaseTestClass {
 
     var response = client.send(request, BodyHandlers.ofString());
 
-    assertFalse("Error response should not contain call stack.", response.body().contains("uk.co.compendiumdev.thingifier.core.domain.definitions.field.definition.Field.getType()"));
+    assertFalse(response.body().contains("uk.co.compendiumdev.thingifier.core.domain.definitions.field.definition.Field.getType()"), "Error response should not contain call stack.");
   }
 }

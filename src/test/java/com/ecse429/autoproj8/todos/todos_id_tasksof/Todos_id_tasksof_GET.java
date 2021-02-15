@@ -10,6 +10,7 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.util.Arrays;
 import java.util.List;
 
+import com.ecse429.autoproj8.BaseTestClass;
 import com.ecse429.autoproj8.models.Project;
 import com.ecse429.autoproj8.models.Reference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,9 +22,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 // GET /todos/id/tasksof
-public class Todos_id_tasksof_GET {
+public class Todos_id_tasksof_GET extends BaseTestClass {
 
-  private static HttpResponse<String> request(Integer todoid) throws IOException, InterruptedException {
+  public static HttpResponse<String> todosGetTasksOfForIdrequest(Integer todoid) throws IOException, InterruptedException {
     var client = HttpClient.newHttpClient();
     String TODO_TASKSOF_URI = API_URI + "/todos/" + todoid + "/tasksof";
     var request = HttpRequest.newBuilder().uri(URI.create(TODO_TASKSOF_URI)).GET().build();
@@ -32,7 +33,7 @@ public class Todos_id_tasksof_GET {
   }
 
   public static List<Project> todosGetTasksOfForId(Integer todoid) throws IOException, InterruptedException, URISyntaxException {
-    var response = request(todoid);
+    var response = todosGetTasksOfForIdrequest(todoid);
 
     assertEquals(response.statusCode(), 200);
 
@@ -69,21 +70,5 @@ public class Todos_id_tasksof_GET {
     Project proj = new Project(1, "Office Work", false, false, "", null, List.of(new Reference(2), new Reference(1)));
 
     assertTrue(projects.contains(proj));
-  }
-
-  @Test
-  public void todosGetTasksOfNullId() throws IOException, InterruptedException, URISyntaxException {
-    Integer nullId = null;
-    var res = request(nullId);
-    var list = todosGetTasksOfForId(res);
-    assertEquals("Null id should not return any tasks", 0, list.size()); // should not give any Projects if null
-  }
-
-  @Test
-  public void todosGetTasksOfInexistantId() throws IOException, InterruptedException, URISyntaxException {
-    Integer inExistantId = 9242094;
-    var res = request(inExistantId);
-    var list = todosGetTasksOfForId(res);
-    assertEquals("Invalid id should not return any tasks", 0, list.size()); // should not give any Projects if invalid -- data breach
   }
 }

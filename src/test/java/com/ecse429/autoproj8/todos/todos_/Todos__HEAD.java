@@ -7,13 +7,15 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpResponse.BodyHandlers;
 
+import com.ecse429.autoproj8.BaseTestClass;
+
 import org.junit.Test;
 import static com.ecse429.autoproj8.ECSE429AutoProj8Tests.API_URI;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 // HEAD /todos
-public class Todos__HEAD {
+public class Todos__HEAD extends BaseTestClass {
 
   private static final String TODOS_URL = API_URI + "/todos";
 
@@ -29,7 +31,7 @@ public class Todos__HEAD {
   }
 
   @Test
-  public void todosGetAllTest() throws IOException, InterruptedException {
+  public void todosHeadAllTest() throws IOException, InterruptedException {
     HttpHeaders todos_headers = todosGetHeaders();
 
     assertTrue(todos_headers.firstValue("Content-Type").toString().equals("Optional[application/json]"));

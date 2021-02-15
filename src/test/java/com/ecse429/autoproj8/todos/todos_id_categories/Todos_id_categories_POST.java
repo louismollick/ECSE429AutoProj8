@@ -10,6 +10,7 @@ import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
 
+import com.ecse429.autoproj8.BaseTestClass;
 import com.ecse429.autoproj8.models.Category;
 import com.ecse429.autoproj8.models.Reference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,7 +23,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 // POST /todos/:id/categories
-public class Todos_id_categories_POST {
+public class Todos_id_categories_POST extends BaseTestClass {
 
   public static HttpResponse<String> todosPOSTCategory(Integer todoid, Reference category)
       throws IOException, InterruptedException {

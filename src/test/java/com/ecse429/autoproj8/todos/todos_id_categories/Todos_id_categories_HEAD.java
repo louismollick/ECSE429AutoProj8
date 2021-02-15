@@ -8,13 +8,15 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpResponse.BodyHandlers;
 
+import com.ecse429.autoproj8.BaseTestClass;
+
 import org.junit.Test;
 import static com.ecse429.autoproj8.ECSE429AutoProj8Tests.API_URI;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 // HEAD /todos/id/categories
-public class Todos_id_categories_HEAD {
+public class Todos_id_categories_HEAD extends BaseTestClass {
 
   public static HttpResponse<String> todosCategoriesHeadIDrequest(Integer id) throws IOException, InterruptedException {
     var client = HttpClient.newHttpClient();

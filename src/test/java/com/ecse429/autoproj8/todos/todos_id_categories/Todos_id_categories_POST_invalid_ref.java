@@ -5,11 +5,12 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
+import com.ecse429.autoproj8.BaseTestClass;
 import com.ecse429.autoproj8.models.Reference;
 
 import org.junit.Test;
 
-public class Todos_id_categories_POST_invalid_ref {
+public class Todos_id_categories_POST_invalid_ref extends BaseTestClass {
   @Test
   public void todosPOSTCategoryInvalidRef() throws IOException, InterruptedException {
     var validId = 1; // Any todo that exists
