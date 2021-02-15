@@ -97,9 +97,10 @@ public class Todos__POST {
   }
 
   @Test
-  public void todosPayloadHasTaskof() throws IOException, InterruptedException {
+  public void todosPayloadHasInvalidTaskof() throws IOException, InterruptedException {
     // Dummy request todo
-    Todo todoWithId = new Todo(2, "Todo with id", false, "Todo with id description", null, List.of(new Reference(1)));
+    int projectid = 329329;
+    Todo todoWithId = new Todo(2, "Todo with id", false, "Todo with id description", null, List.of(new Reference(projectid)));
 
     // Given it doesn't already exist
     List<Todo> prevTodos = Todos__GET.todosGetAll();
@@ -108,7 +109,9 @@ public class Todos__POST {
     String[] exclude = {"id", "categories"}; // don't exclude tasksof
     var response = request(todoWithId, exclude);
 
-    assertTrue("Good error message", response.body().contains("Invalid relationships: Failed Validation: cannot find tasksof to relate to with id 1"));
+    System.out.println(response.body());
+    
+    assertTrue("Good error message", response.body().contains("Invalid relationships: Failed Validation: cannot find tasksof to relate to with id " + projectid));
 
     // Verify it now exists
     List<Todo> newTodos = Todos__GET.todosGetAll();
