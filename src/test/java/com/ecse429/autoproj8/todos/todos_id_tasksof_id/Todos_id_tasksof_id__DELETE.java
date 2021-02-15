@@ -25,8 +25,9 @@ public class Todos_id_tasksof_id__DELETE {
 
   public static void deleteTaskOfTodo(int todoid, int projectid) throws IOException, InterruptedException {
     var client = HttpClient.newHttpClient();
-  
-    var request = HttpRequest.newBuilder().uri(URI.create(TODOS_URL + todoid + "/tasksof/" + projectid)).DELETE().build();
+
+    var request = HttpRequest.newBuilder().uri(URI.create(TODOS_URL + todoid + "/tasksof/" + projectid)).DELETE()
+        .build();
 
     var response = client.send(request, BodyHandlers.ofString());
     assertEquals(response.statusCode(), 200);
