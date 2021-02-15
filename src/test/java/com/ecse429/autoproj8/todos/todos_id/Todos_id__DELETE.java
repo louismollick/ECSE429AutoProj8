@@ -9,7 +9,6 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
 
 import com.ecse429.autoproj8.models.Todo;
-import com.ecse429.autoproj8.shutdown.Shutdown;
 import com.ecse429.autoproj8.todos.todos_.Todos__GET;
 
 import org.junit.Test;
@@ -40,10 +39,5 @@ public class Todos_id__DELETE {
     for (Todo todo : todos) {
         assertNotEquals(todo.getId(), ID);
     }
-
-    // restart server
-    Shutdown.shutdown();
-    Runtime rt = Runtime.getRuntime();
-    rt.exec("java -jar runTodoManagerRestAPI-1.5.5.jar");
   }
 }
