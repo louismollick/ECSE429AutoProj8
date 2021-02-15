@@ -1,4 +1,4 @@
-package com.ecse429.autoproj8.todos.todos_;
+package com.ecse429.autoproj8.todos.todos_id;
 
 import java.io.IOException;
 import java.net.URI;
@@ -17,12 +17,13 @@ import static com.ecse429.autoproj8.ECSE429AutoProj8Tests.API_URI;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-// GET /todos
-public class Todos__GET {
+// GET /todos/:id
+public class Todos_id__GET {
 
-  private static final String TODOS_URL = API_URI + "/todos";
+  private static final int ID = 1;
+  private static final String TODOS_URL = API_URI + "/todos/" + ID;
 
-  public static List<Todo> todosGetAll() throws IOException, InterruptedException {
+  public static Todo todosGetID(int id) throws IOException, InterruptedException {
     var client = HttpClient.newHttpClient();
     var request = HttpRequest.newBuilder().uri(URI.create(TODOS_URL)).GET().build();
 
@@ -42,20 +43,18 @@ public class Todos__GET {
      */
     var node = mapper.readTree(response.body());
     Todo[] arrayTodo = mapper.readValue(node.path("todos").toString(), Todo[].class);
-    return Arrays.asList(arrayTodo);
+    return Arrays.asList(arrayTodo).get(0);
   }
 
   @Test
-  public void todosGetAllTest() throws IOException, InterruptedException {
-    List<Todo> todos = todosGetAll();
+  public void todosGetIDTest() throws IOException, InterruptedException {
+    Todo todo = todosGetID(ID);
 
     // Default created Todos
     Todo scan = new Todo(1, "scan paperwork", false, "", List.of(new Reference(1)), List.of(new Reference(1)));
-    Todo file = new Todo(2, "file paperwork", false, "", null, List.of(new Reference(1)));
 
-    System.out.println(file);
-    System.out.println(todos);
-    assertTrue(todos.contains(scan));
-    assertTrue(todos.contains(file));
+    System.out.println("scan " + scan);
+    System.out.println("todo " + todo);
+    assertTrue(todo.equals(scan));
   }
 }

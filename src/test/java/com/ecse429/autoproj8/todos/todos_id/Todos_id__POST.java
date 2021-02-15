@@ -1,4 +1,4 @@
-package com.ecse429.autoproj8.todos.todos_;
+package com.ecse429.autoproj8.todos.todos_id;
 
 import java.io.IOException;
 import java.net.URI;
@@ -18,17 +18,18 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-// POST /todos
-public class Todos__POST {
+// POST /todos/:id
+public class Todos_id__POST {
 
-  private static final String TODOS_URL = API_URI + "/todos";
+  private static final int ID = 1;
+  private static final String TODOS_URL = API_URI + "/todos/" + ID;
 
-  public static Todo todosCreateTodo(Todo todo) throws IOException, InterruptedException {
+  public static Todo editTodo(Todo todo) throws IOException, InterruptedException {
     String[] exlc = {};
-    return todosCreateTodo(todo, exlc);
+    return editPostTodo(todo, exlc);
   }
-  
-  public static Todo todosCreateTodo(Todo todo, String[] exclude) throws IOException, InterruptedException {
+
+  public static Todo editPostTodo(Todo todo, String[] exclude) throws IOException, InterruptedException {
     var mapper = new ObjectMapper();
     var client = HttpClient.newHttpClient();
     var requestBody = mapper.writeValueAsString(todo);
@@ -39,32 +40,29 @@ public class Todos__POST {
       ((ObjectNode)root).remove(e);
     }
   
-    var request = HttpRequest.newBuilder().uri(URI.create(TODOS_URL)).POST(BodyPublishers.ofString(root.toString()))
-        .build();
+    var request = HttpRequest.newBuilder().uri(URI.create(TODOS_URL)).POST(BodyPublishers.ofString(root.toString())).build();
 
     var response = client.send(request, BodyHandlers.ofString());
 
-    assertEquals(201, response.statusCode());
+    assertEquals(200, response.statusCode());
 
     return mapper.readValue(response.body(), Todo.class);
   }
 
   @Test
-  public void todosValidCreateNew() throws IOException, InterruptedException {
-    // Dummy request todo
-    Todo requestValidTodo = new Todo(1, "Valid Todo 1", false, "Valid Todo description", null, null);
+  public void todosPostIDTest() throws IOException, InterruptedException {
+    Todo old_todo = Todos_id__GET.todosGetID(ID);
+    Todo new_todo = new Todo(ID, "New Todo", false, "", null, null);
 
-    // Given it doesn't already exist
-    List<Todo> prevTodos = Todos__GET.todosGetAll();
-
-    // POST valid todo
     String[] exclude = {"id", "categories", "tasksof"};
-    Todo responseTodo = todosCreateTodo(requestValidTodo, exclude);
+    
+    // Edit todo
+    Todo db_todo = editPostTodo(new_todo, exclude);
 
-    // Verify it now exists
-    List<Todo> newTodos = Todos__GET.todosGetAll();
+    // Revert todo
+    Todo reverted_todo = editPostTodo(old_todo, exclude);
 
-    assertFalse(prevTodos.contains(responseTodo));
-    assertTrue(newTodos.contains(responseTodo));
+    assertTrue(db_todo.getTitle().equals("New Todo"));
+    assertTrue(reverted_todo.getTitle().equals(old_todo.getTitle()));
   }
 }
