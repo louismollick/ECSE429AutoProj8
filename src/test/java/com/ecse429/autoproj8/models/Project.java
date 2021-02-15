@@ -3,18 +3,17 @@ package com.ecse429.autoproj8.models;
 import java.util.List;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
 public class Project {
+  @JsonFormat(shape=Shape.STRING)
   private int id;
   private String title;
   private boolean completed;
   private boolean active;
   private String description;
-  @JsonInclude(value = Include.NON_NULL)
   private List<Reference> categories;
-  @JsonInclude(value = Include.NON_NULL)
   private List<Reference> tasks;
 
   public Project() {

@@ -2,7 +2,11 @@ package com.ecse429.autoproj8.models;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+
 public class Reference {
+  @JsonFormat(shape=Shape.STRING)
   private int id;
 
   public Reference() {

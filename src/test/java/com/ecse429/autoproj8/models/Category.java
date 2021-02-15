@@ -3,16 +3,24 @@ package com.ecse429.autoproj8.models;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 public class Category {
+  @JsonFormat(shape=Shape.STRING)
   private int id;
   private String title;
   private String description;
   private List<Reference> projects;
   private List<Reference> todos;
 
-
   public Category() {
     
+  }
+
+  public Category(int id, String title, String description) {
+    this.id = id;
+    this.title = title;
+    this.description = description;
   }
 
   public Category(int id, String title, String description, List<Reference> projects, List<Reference> todos) {
