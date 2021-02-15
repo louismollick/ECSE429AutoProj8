@@ -17,7 +17,7 @@ import static com.ecse429.autoproj8.ECSE429AutoProj8Tests.API_URI;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class projects_GET {
+public class Projects__GET {
 
     private static final String PROJECTS_URL = API_URI + "/projects";
     
@@ -41,10 +41,10 @@ public class projects_GET {
     @Test
     public void projectsGetAllTest() throws IOException, InterruptedException {
         List<Project> projects = projectsGetAll();
+        List<Reference> refs = List.of(new Reference(2), new Reference(1));
+        Project office = new Project(1, "Office Work", false, false, "", null, refs);
 
-        Project office = new Project(1, "Office Work", false, false, "", null, null);
-
-        System.out.println(office);
+        System.out.println(projects);
         assertTrue(projects.contains(office));
 
 
