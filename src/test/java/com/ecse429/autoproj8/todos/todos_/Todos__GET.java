@@ -53,8 +53,6 @@ public class Todos__GET {
     Todo scan = new Todo(1, "scan paperwork", false, "", List.of(new Reference(1)), List.of(new Reference(1)));
     Todo file = new Todo(2, "file paperwork", false, "", null, List.of(new Reference(1)));
 
-    System.out.println(file);
-    System.out.println(todos);
     assertTrue(todos.contains(scan));
     assertTrue(todos.contains(file));
   }

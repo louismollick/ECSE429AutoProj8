@@ -108,8 +108,6 @@ public class Todos__POST {
     // POST valid todo
     String[] exclude = {"id", "categories"}; // don't exclude tasksof
     var response = request(todoWithId, exclude);
-
-    System.out.println(response.body());
     
     assertTrue("Good error message", response.body().contains("Invalid relationships: Failed Validation: cannot find tasksof to relate to with id " + projectid));
 

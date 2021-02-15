@@ -53,8 +53,6 @@ public class Todos_id__GET {
     // Default created Todos
     Todo scan = new Todo(1, "scan paperwork", false, "", List.of(new Reference(1)), List.of(new Reference(1)));
 
-    System.out.println("scan " + scan);
-    System.out.println("todo " + todo);
     assertTrue(todo.equals(scan));
   }
 }

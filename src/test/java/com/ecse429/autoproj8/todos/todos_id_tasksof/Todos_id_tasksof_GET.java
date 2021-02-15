@@ -33,8 +33,6 @@ public class Todos_id_tasksof_GET {
 
   public static List<Project> todosGetTasksOfForId(Integer todoid) throws IOException, InterruptedException, URISyntaxException {
     var response = request(todoid);
-    System.out.println(response);
-    System.out.println(response.body());
 
     assertEquals(response.statusCode(), 200);
 
@@ -54,9 +52,6 @@ public class Todos_id_tasksof_GET {
   }
 
   public static List<Project> todosGetTasksOfForId(HttpResponse<String> response) throws IOException, InterruptedException, URISyntaxException {
-    System.out.println(response);
-    System.out.println(response.body());
-
     assertEquals(response.statusCode(), 200);
 
     var mapper = new ObjectMapper();
