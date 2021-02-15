@@ -6,12 +6,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse.BodyHandlers;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import com.ecse429.autoproj8.models.Reference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.Test;
 import static com.ecse429.autoproj8.ECSE429AutoProj8Tests.API_URI;

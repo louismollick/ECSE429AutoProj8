@@ -21,7 +21,7 @@ import static org.junit.Assert.assertNotEquals;
 public class Categories_id__DELETE {
 
   private static final int ID = 1;
-  private static final String CATEGORIES_URL = API_URI + "/categories/" + ID;
+  private static final String CATEGORIES_URL = API_URI + "/categories/";
 
   public static void deleteCategory(int id) throws IOException, InterruptedException {
     var client = HttpClient.newHttpClient();
