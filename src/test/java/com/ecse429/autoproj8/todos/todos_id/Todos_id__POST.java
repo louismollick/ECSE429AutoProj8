@@ -6,7 +6,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse.BodyHandlers;
-import java.util.List;
 
 import com.ecse429.autoproj8.models.Todo;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,7 +14,6 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.Test;
 import static com.ecse429.autoproj8.ECSE429AutoProj8Tests.API_URI;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 // POST /todos/:id
