@@ -8,6 +8,7 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.util.Arrays;
 import java.util.List;
 
+import com.ecse429.autoproj8.BaseTestClass;
 import com.ecse429.autoproj8.models.Reference;
 import com.ecse429.autoproj8.models.Todo;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,7 +19,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 // GET /todos/:id
-public class Todos_id__GET {
+public class Todos_id__GET extends BaseTestClass {
 
   private static final int ID = 1;
   private static final String TODOS_URL = API_URI + "/todos/" + ID;
@@ -53,8 +54,6 @@ public class Todos_id__GET {
     // Default created Todos
     Todo scan = new Todo(1, "scan paperwork", false, "", List.of(new Reference(1)), List.of(new Reference(1)));
 
-    System.out.println("scan " + scan);
-    System.out.println("todo " + todo);
     assertTrue(todo.equals(scan));
   }
 }

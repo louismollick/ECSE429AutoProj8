@@ -44,7 +44,6 @@ public class Projects__GET {
         List<Reference> refs = List.of(new Reference(2), new Reference(1));
         Project office = new Project(1, "Office Work", false, false, "", null, refs);
 
-        System.out.println(projects);
         assertTrue(projects.contains(office));
     }
 }

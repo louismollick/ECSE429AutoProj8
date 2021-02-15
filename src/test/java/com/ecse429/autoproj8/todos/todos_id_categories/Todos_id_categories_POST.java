@@ -10,6 +10,7 @@ import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
 
+import com.ecse429.autoproj8.BaseTestClass;
 import com.ecse429.autoproj8.models.Category;
 import com.ecse429.autoproj8.models.Reference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,14 +23,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 // POST /todos/:id/categories
-public class Todos_id_categories_POST {
+public class Todos_id_categories_POST extends BaseTestClass {
 
   public static HttpResponse<String> todosPOSTCategory(Integer todoid, Reference category)
       throws IOException, InterruptedException {
     var mapper = new ObjectMapper();
     var client = HttpClient.newHttpClient();
     var requestBody = mapper.writeValueAsString(category);
-    System.out.println(requestBody);
 
     String TODO_TASKSOF_URI = API_URI + "/todos/" + todoid + "/categories";
 
@@ -55,8 +55,6 @@ public class Todos_id_categories_POST {
     // POST reference to Category
     var response = todosPOSTCategory(todoid, ref);
 
-    System.out.println(response.body());
-
     assertEquals(201, response.statusCode());
 
     // Verify it now exists
@@ -66,45 +64,5 @@ public class Todos_id_categories_POST {
     assertTrue(newCategories.contains(cat));
 
     assertFalse("Must include JSON payload in return.", response.body().isEmpty()); // it should return some JSON payload
-  }
-
-  @Test
-  public void todosPOSTCategoryNullId() throws IOException, InterruptedException {
-    Integer nullId = null;
-    Reference ref = new Reference(1); // Any project that exists
-    var res = todosPOSTCategory(nullId, ref);
-    assertTrue(res.body().contains("Could not find parent thing for relationship todos/" + nullId + "/categories"));
-  }
-
-  @Test
-  public void todosPOSTCategoryInvalidId() throws IOException, InterruptedException {
-    var invalidId = 10294;
-    Reference ref = new Reference(1); // Any project that exists
-    var res = todosPOSTCategory(invalidId, ref);
-    assertTrue(res.body().contains("Could not find parent thing for relationship todos/" + invalidId + "/categories"));
-  }
-
-  @Test
-  public void todosPOSTCategoryInvalidRef() throws IOException, InterruptedException {
-    var validId = 1; // Any todo that exists
-    Reference ref = new Reference(13234);
-    var res = todosPOSTCategory(validId, ref);
-    assertTrue(res.body().contains("Could not find thing matching value for id"));
-  }
-
-  @Test
-  public void todosCreateTaskMalformedJSON() throws IOException, InterruptedException {
-    var validId = 1; // Any todo that exists
-    var TODO_TASKSOF_URI = API_URI + "/todos/" + validId + "/categories";
-
-    var malformed = "{ \"hi\": \"bud\" }";
-
-    var client = HttpClient.newHttpClient();
-    var request = HttpRequest.newBuilder().uri(URI.create(TODO_TASKSOF_URI)).POST(BodyPublishers.ofString(malformed))
-        .build();
-
-    var response = client.send(request, BodyHandlers.ofString());
-
-    assertFalse("Error response should not contain call stack.", response.body().contains("uk.co.compendiumdev.thingifier.core.domain.definitions.field.definition.Field.getType()"));
   }
 }

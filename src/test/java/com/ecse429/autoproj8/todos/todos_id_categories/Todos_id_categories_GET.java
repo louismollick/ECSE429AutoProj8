@@ -10,6 +10,7 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.util.Arrays;
 import java.util.List;
 
+import com.ecse429.autoproj8.BaseTestClass;
 import com.ecse429.autoproj8.models.Category;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -20,9 +21,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 // GET /todos/id/categories
-public class Todos_id_categories_GET {
+public class Todos_id_categories_GET extends BaseTestClass {
 
-  private static HttpResponse<String> request(Integer todoid) throws IOException, InterruptedException {
+  public static HttpResponse<String> todosGetCategoriesForIdrequest(Integer todoid)
+      throws IOException, InterruptedException {
     var client = HttpClient.newHttpClient();
     String TODO_CATEGORY_URI = API_URI + "/todos/" + todoid + "/categories";
     var request = HttpRequest.newBuilder().uri(URI.create(TODO_CATEGORY_URI)).GET().build();
@@ -30,18 +32,19 @@ public class Todos_id_categories_GET {
     return client.send(request, BodyHandlers.ofString());
   }
 
-  public static List<Category> todosGetCategoriesForId(Integer todoid) throws IOException, InterruptedException, URISyntaxException {
-    var response = request(todoid);
+  public static List<Category> todosGetCategoriesForId(Integer todoid)
+      throws IOException, InterruptedException, URISyntaxException {
+    var response = todosGetCategoriesForIdrequest(todoid);
+
+    System.out.println(response.body());
 
     assertEquals(response.statusCode(), 200);
 
     var mapper = new ObjectMapper();
 
     /**
-     * Special case, we need to use readTree first since Jackson can't parse when we have this:
-     * {
-     *    "todos": [{"id": "1", ...}, {}]
-     * }
+     * Special case, we need to use readTree first since Jackson can't parse when we
+     * have this: { "todos": [{"id": "1", ...}, {}] }
      * 
      * It can only parse this: [{"id": "1", ...}, {}]
      */
@@ -50,7 +53,8 @@ public class Todos_id_categories_GET {
     return Arrays.asList(arrayTodo);
   }
 
-  public static List<Category> todosGetCategoriesForId(HttpResponse<String> response) throws IOException, InterruptedException, URISyntaxException {
+  public static List<Category> todosGetCategoriesForId(HttpResponse<String> response)
+      throws IOException, InterruptedException, URISyntaxException {
     assertEquals(response.statusCode(), 200);
 
     var mapper = new ObjectMapper();
@@ -65,24 +69,10 @@ public class Todos_id_categories_GET {
 
     List<Category> categories = todosGetCategoriesForId(validTodoId);
 
-    Category cat = new Category(1, "Office", "");
+    Category cat = new Category(1, "Office", "", null, null);
+
+    System.out.println(categories);
 
     assertTrue(categories.contains(cat));
-  }
-
-  @Test
-  public void todosGetCategoriesNullId() throws IOException, InterruptedException, URISyntaxException {
-    Integer nullId = null;
-    var res = request(nullId);
-    var list = todosGetCategoriesForId(res);
-    assertEquals("Null id should not return any categories", 0, list.size()); // should not give any Categories if null
-  }
-
-  @Test
-  public void todosGetCategoriesInexistantId() throws IOException, InterruptedException, URISyntaxException {
-    Integer inExistantId = 9242094;
-    var res = request(inExistantId);
-    var list = todosGetCategoriesForId(res);
-    assertEquals("Invalid id should not return any categories", 0, list.size()); // should not give any Categories if invalid -- data breach
   }
 }

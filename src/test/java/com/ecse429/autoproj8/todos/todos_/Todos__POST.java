@@ -9,6 +9,7 @@ import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
 
+import com.ecse429.autoproj8.BaseTestClass;
 import com.ecse429.autoproj8.models.Reference;
 import com.ecse429.autoproj8.models.Todo;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,11 +22,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 // POST /todos
-public class Todos__POST {
+public class Todos__POST extends BaseTestClass {
 
-  private static final String TODOS_URL = API_URI + "/todos";
+  public static final String TODOS_URL = API_URI + "/todos";
 
-  private static HttpResponse<String> request(Todo todo, String[] exclude) throws IOException, InterruptedException {
+  public static HttpResponse<String> todosCreateTodorequest(Todo todo, String[] exclude) throws IOException, InterruptedException {
     var mapper = new ObjectMapper();
     var client = HttpClient.newHttpClient();
     var requestBody = mapper.writeValueAsString(todo);
@@ -48,7 +49,7 @@ public class Todos__POST {
   }
 
   public static Todo todosCreateTodo(Todo todo, String[] exclude) throws IOException, InterruptedException {
-    var response = request(todo, exclude);
+    var response = todosCreateTodorequest(todo, exclude);
 
     assertEquals(201, response.statusCode());
     var mapper = new ObjectMapper();
@@ -72,63 +73,5 @@ public class Todos__POST {
 
     assertFalse(prevTodos.contains(responseTodo));
     assertTrue(newTodos.contains(responseTodo));
-  }
-
-  @Test
-  public void todosPayloadHasId() throws IOException, InterruptedException {
-    // Dummy request todo
-    Todo todoWithId = new Todo(2, "Todo with id", false, "Todo with id description", null, null);
-
-    // Given it doesn't already exist
-    List<Todo> prevTodos = Todos__GET.todosGetAll();
-
-    // POST valid todo
-    String[] exclude = { "categories", "tasksof" }; // don't exclude id
-    var response = request(todoWithId, exclude);
-
-    assertTrue("Good error message",
-        response.body().contains("Invalid Creation: Failed Validation: Not allowed to create with id"));
-
-    // Verify it now exists
-    List<Todo> newTodos = Todos__GET.todosGetAll();
-
-    assertFalse(prevTodos.contains(todoWithId));
-    assertFalse(newTodos.contains(todoWithId));
-  }
-
-  @Test
-  public void todosPayloadHasInvalidTaskof() throws IOException, InterruptedException {
-    // Dummy request todo
-    int projectid = 329329;
-    Todo todoWithId = new Todo(2, "Todo with id", false, "Todo with id description", null, List.of(new Reference(projectid)));
-
-    // Given it doesn't already exist
-    List<Todo> prevTodos = Todos__GET.todosGetAll();
-
-    // POST valid todo
-    String[] exclude = {"id", "categories"}; // don't exclude tasksof
-    var response = request(todoWithId, exclude);
-
-    System.out.println(response.body());
-    
-    assertTrue("Good error message", response.body().contains("Invalid relationships: Failed Validation: cannot find tasksof to relate to with id " + projectid));
-
-    // Verify it now exists
-    List<Todo> newTodos = Todos__GET.todosGetAll();
-
-    assertFalse(prevTodos.contains(todoWithId));
-    assertFalse(newTodos.contains(todoWithId));
-  }
-
-  @Test
-  public void todosPayloadMalformed() throws IOException, InterruptedException {
-    var malformed = "{ \"hi\": \"bud\" }";
-
-    var request = HttpRequest.newBuilder().uri(URI.create(TODOS_URL)).POST(BodyPublishers.ofString(malformed))
-        .build();
-    var client = HttpClient.newHttpClient();
-    var response = client.send(request, BodyHandlers.ofString());
-    assertEquals(400, response.statusCode());
-    assertTrue("Good error message", response.body().contains("Could not find field: hi"));
   }
 }

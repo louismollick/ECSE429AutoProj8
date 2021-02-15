@@ -7,6 +7,7 @@ import java.net.http.HttpRequest;
 
 import java.net.http.HttpResponse.BodyHandlers;
 
+import com.ecse429.autoproj8.BaseTestClass;
 import com.ecse429.autoproj8.models.Todo;
 import com.ecse429.autoproj8.shutdown.Shutdown;
 import com.ecse429.autoproj8.todos.todos_id.Todos_id__GET;
@@ -17,7 +18,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 // DELETE /todos/:id
-public class Todos_id_categories_id__DELETE {
+public class Todos_id_categories_id__DELETE extends BaseTestClass {
 
   private static final int todoID = 1;
   private static final int categoryID = 1;

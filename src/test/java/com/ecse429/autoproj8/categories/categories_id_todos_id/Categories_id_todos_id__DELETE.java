@@ -45,12 +45,9 @@ public class Categories_id_todos_id__DELETE {
 
     Categories_id_projects__POST.categoriesCreateCategory(ref, exclude);
     List<Category> cat = Categories__GET.categoriesGetAll();
-    System.out.println(cat);
 
     deleteCategory(ID, ID2);
 
-    System.out.println(ref);
-    System.out.println(cat);
     assertFalse(cat.contains(ref));
 
     // restart server
