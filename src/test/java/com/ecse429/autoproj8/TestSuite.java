@@ -1,5 +1,28 @@
 package com.ecse429.autoproj8;
 
+import com.ecse429.autoproj8.categories.categories_.Categories__GET;
+import com.ecse429.autoproj8.categories.categories_.Categories__HEAD;
+import com.ecse429.autoproj8.categories.categories_.Categories__POST;
+import com.ecse429.autoproj8.categories.categories_id.*;
+import com.ecse429.autoproj8.categories.categories_id_projects.Categories_id_projects__GET;
+import com.ecse429.autoproj8.categories.categories_id_projects.Categories_id_projects__HEAD;
+import com.ecse429.autoproj8.categories.categories_id_projects.Categories_id_projects__POST;
+import com.ecse429.autoproj8.categories.categories_id_projects_id.Categories_id_projects_id__DELETE;
+import com.ecse429.autoproj8.categories.categories_id_todos.Categories_id_todos__GET;
+import com.ecse429.autoproj8.categories.categories_id_todos.Categories_id_todos__HEAD;
+import com.ecse429.autoproj8.categories.categories_id_todos.Categories_id_todos__POST;
+import com.ecse429.autoproj8.categories.categories_id_todos_id.Categories_id_todos_id__DELETE;
+import com.ecse429.autoproj8.projects.projects_.Projects__GET;
+import com.ecse429.autoproj8.projects.projects_.Projects__HEAD;
+import com.ecse429.autoproj8.projects.projects_.Projects__POST;
+import com.ecse429.autoproj8.projects.projects_id_.*;
+import com.ecse429.autoproj8.projects.projects_id_categories_.Projects_id_categories__HEAD;
+import com.ecse429.autoproj8.projects.projects_id_categories_.Projects_id_categories__POST;
+import com.ecse429.autoproj8.projects.projects_id_categories_id.Projects_id_categories_id__DELETE;
+import com.ecse429.autoproj8.projects.projects_id_tasks_.Projects_id_tasks__GET;
+import com.ecse429.autoproj8.projects.projects_id_tasks_.Projects_id_tasks__HEAD;
+import com.ecse429.autoproj8.projects.projects_id_tasks_.Projects_id_tasks__POST;
+import com.ecse429.autoproj8.projects.projects_id_tasks_id.Projects_id_tasks_id__DELETE;
 import com.ecse429.autoproj8.shutdown.Shutdown;
 import com.ecse429.autoproj8.todos.todos_.Todos__GET;
 import com.ecse429.autoproj8.todos.todos_.Todos__HEAD;
@@ -16,8 +39,6 @@ import com.ecse429.autoproj8.todos.todos_id_tasksof.Todos_id_tasksof_POST;
 import com.ecse429.autoproj8.todos.todos_id_tasksof_id.Todos_id_tasksof_id__DELETE;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -41,7 +62,39 @@ import java.io.IOException;
         Todos_id_tasksof_GET.class,
         Todos_id_tasksof_HEAD.class,
         Todos_id_tasksof_POST.class,
-        Todos_id_tasksof_id__DELETE.class
+        Todos_id_tasksof_id__DELETE.class,
+        Projects__GET.class,
+        Projects__HEAD.class,
+        Projects__POST.class,
+        Projects_id__GET.class,
+        Projects_id__HEAD.class,
+        Projects_id__POST.class,
+        Projects_id__PUT.class,
+        Projects_id__DELETE.class,
+//        Projects_id_categories__GET.class,
+        Projects_id_categories__HEAD.class,
+        Projects_id_categories__POST.class,
+        Projects_id_categories_id__DELETE.class,
+        Projects_id_tasks__GET.class,
+        Projects_id_tasks__HEAD.class,
+        Projects_id_tasks__POST.class,
+        Projects_id_tasks_id__DELETE.class,
+        Categories__GET.class,
+        Categories__HEAD.class,
+        Categories__POST.class,
+        Categories_id__DELETE.class,
+        Categories_id__GET.class,
+        Categories_id__HEAD.class,
+        Categories_id__POST.class,
+        Categories_id__PUT.class,
+        Categories_id_projects__GET.class,
+        Categories_id_projects__HEAD.class,
+        Categories_id_projects__POST.class,
+        Categories_id_projects_id__DELETE.class,
+        Categories_id_todos__GET.class,
+        Categories_id_todos__HEAD.class,
+        Categories_id_todos__POST.class,
+        Categories_id_todos_id__DELETE.class
 })
 
 public class TestSuite {

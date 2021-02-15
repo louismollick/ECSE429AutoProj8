@@ -13,6 +13,7 @@ import com.ecse429.autoproj8.models.Project;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.Test;
+
 import static com.ecse429.autoproj8.ECSE429AutoProj8Tests.API_URI;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -20,22 +21,21 @@ import static org.junit.Assert.assertTrue;
 public class Projects__GET {
 
     private static final String PROJECTS_URL = API_URI + "/projects";
-    
+
     public static List<Project> projectsGetAll() throws IOException, InterruptedException {
 
         var client = HttpClient.newHttpClient();
-    var request = HttpRequest.newBuilder().uri(URI.create(PROJECTS_URL)).GET().build();
+        var request = HttpRequest.newBuilder().uri(URI.create(PROJECTS_URL)).GET().build();
 
-    var response = client.send(request, BodyHandlers.ofString());
+        var response = client.send(request, BodyHandlers.ofString());
 
-    assertEquals(response.statusCode(), 200);
+        assertEquals(response.statusCode(), 200);
 
-    var mapper = new ObjectMapper();
-    
-    var node = mapper.readTree(response.body());
-    Project[] arrayProject = mapper.readValue(node.path("projects").toString(), Project[].class);
-    return Arrays.asList(arrayProject);
+        var mapper = new ObjectMapper();
 
+        var node = mapper.readTree(response.body());
+        Project[] arrayProject = mapper.readValue(node.path("projects").toString(), Project[].class);
+        return Arrays.asList(arrayProject);
     }
 
     @Test
@@ -46,10 +46,5 @@ public class Projects__GET {
 
         System.out.println(projects);
         assertTrue(projects.contains(office));
-
-
     }
-
-
-
 }
