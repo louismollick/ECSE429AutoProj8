@@ -11,6 +11,19 @@ public class Category {
   private List<Reference> todos;
 
 
+  public Category() {
+    
+  }
+
+  public Category(int id, String title, String description, List<Reference> projects, List<Reference> todos) {
+    this.id = id;
+    this.title = title;
+    this.description = description;
+    this.projects = projects;
+    this.todos = todos;
+  }
+
+
   public int getId() {
     return this.id;
   }
