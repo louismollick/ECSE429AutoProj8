@@ -8,6 +8,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
 
+import com.ecse429.autoproj8.BaseTestClass;
 import com.ecse429.autoproj8.models.Category;
 import com.ecse429.autoproj8.models.Reference;
 import com.ecse429.autoproj8.shutdown.Shutdown;
@@ -21,7 +22,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 
 // DELETE /categories/:id
-public class Categories_id_projects_id__DELETE {
+public class Categories_id_projects_id__DELETE extends BaseTestClass{
 
   private static final int ID = 1;
   private static final int ID2 = 2;

@@ -8,6 +8,7 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.util.Arrays;
 import java.util.List;
 
+import com.ecse429.autoproj8.BaseTestClass;
 import com.ecse429.autoproj8.models.Reference;
 import com.ecse429.autoproj8.models.Todo;
 import com.ecse429.autoproj8.models.Category;
@@ -19,7 +20,7 @@ import static com.ecse429.autoproj8.ECSE429AutoProj8Tests.API_URI;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class Projects_id_tasks__GET {
+public class Projects_id_tasks__GET extends BaseTestClass {
 
     private static final int ID = 1;
     private static final String PROJECTS_URL = API_URI + "/projects/" + ID + "/tasks";

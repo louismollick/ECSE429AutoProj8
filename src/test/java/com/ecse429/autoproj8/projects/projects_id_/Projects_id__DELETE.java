@@ -8,6 +8,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
 
+import com.ecse429.autoproj8.BaseTestClass;
 import com.ecse429.autoproj8.models.Project;
 import com.ecse429.autoproj8.shutdown.Shutdown;
 import com.ecse429.autoproj8.projects.projects_.Projects__GET;
@@ -18,7 +19,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 // DELETE /projects/:id
-public class Projects_id__DELETE {
+public class Projects_id__DELETE extends BaseTestClass {
 
   private static final int ID = 1;
   private static final String PROJECTS_URL = API_URI + "/projects/";
