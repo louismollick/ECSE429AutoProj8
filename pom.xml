@@ -39,11 +39,6 @@
       <version>RELEASE</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>net.sf.randomjunit</groupId>
-      <artifactId>random-junit</artifactId>
-      <version>1.0.3</version>
-    </dependency>
   </dependencies>
 
   <build>
