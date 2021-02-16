@@ -7,13 +7,14 @@ import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse.BodyHandlers;
 
+import com.ecse429.autoproj8.BaseTestClass;
 import org.junit.Test;
 import static com.ecse429.autoproj8.ECSE429AutoProj8Tests.API_URI;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 // GET /todos
-public class Projects_id_tasks__HEAD {
+public class Projects_id_tasks__HEAD extends BaseTestClass {
     private static final int ID = 1;
   private static final String PROJECTS_URL = API_URI + "/projects/" + ID + "/tasks";
 

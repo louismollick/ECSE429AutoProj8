@@ -8,6 +8,7 @@ import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
 
+import com.ecse429.autoproj8.BaseTestClass;
 import com.ecse429.autoproj8.projects.projects_.Projects__GET;
 import com.ecse429.autoproj8.projects.projects_id_.Projects_id__GET;
 import com.ecse429.autoproj8.models.Project;
@@ -23,7 +24,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 // GET /projects
-public class Projects_id_tasks__POST {
+public class Projects_id_tasks__POST extends BaseTestClass {
 
     private static final int ID = 1;
   private static final String PROJECTS_URL = API_URI + "/projects/" + ID + "/tasks";

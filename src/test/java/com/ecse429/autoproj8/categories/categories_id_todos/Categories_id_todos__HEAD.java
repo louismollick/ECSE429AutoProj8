@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.ecse429.autoproj8.BaseTestClass;
 import com.ecse429.autoproj8.models.Reference;
 import com.ecse429.autoproj8.models.Category;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 // GET /todos
-public class Categories_id_todos__HEAD {
+public class Categories_id_todos__HEAD extends BaseTestClass{
 
     private static final int ID = 1;
   private static final String CATEGORIES_URL = API_URI + "/categories/" + ID + "/todos";

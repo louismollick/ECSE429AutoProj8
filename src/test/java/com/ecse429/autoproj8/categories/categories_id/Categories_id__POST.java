@@ -8,6 +8,7 @@ import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
 
+import com.ecse429.autoproj8.BaseTestClass;
 import com.ecse429.autoproj8.categories.categories_.Categories__GET;
 import com.ecse429.autoproj8.models.Category;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,7 +21,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 // GET /categories
-public class Categories_id__POST {
+public class Categories_id__POST extends BaseTestClass {
 
     private static final int ID = 1;
   private static final String CATEGORIES_URL = API_URI + "/categories/" + ID;
