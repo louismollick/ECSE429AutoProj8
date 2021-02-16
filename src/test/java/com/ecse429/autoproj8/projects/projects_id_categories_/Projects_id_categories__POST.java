@@ -44,20 +44,20 @@ public class Projects_id_categories__POST {
         .build();
 
     var response = client.send(request, BodyHandlers.ofString());
-    System.out.println(response.body());
+
     assertEquals(201, response.statusCode());
 
    // return mapper.readValue(response.body(), Reference.class);
   }
 
   @Test
-  public void projectsIdPOST() throws IOException, InterruptedException {
+  public void projectsIdCategoriesPOST() throws IOException, InterruptedException {
     // Dummy request project
     //Project modifiedCategory = new Project(1, "Modified Project", "Valid Project description", null, null);
     Reference ref = new Reference(1);
 
     // POST valid project
-    String[] exclude = {"id", "projects", "projects", "todos"};
+    String[] exclude = {"projects", "projects", "todos"};
     projectsCreateCategory(ref, exclude);
 
     
@@ -67,6 +67,6 @@ public class Projects_id_categories__POST {
 
     System.out.println(newProject);
     System.out.println(ref);
-    assertTrue(newProject.contains(ref));
+    assertTrue(newProject.toString().contains(ref.toString()));
   }
 }
