@@ -7,12 +7,14 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse.BodyHandlers;
 
+import com.ecse429.autoproj8.BaseTestClass;
+
 import org.junit.Test;
 
 import static com.ecse429.autoproj8.ECSE429AutoProj8Tests.API_URI;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class Todos_id_tasksof_POST_malformed {
+public class Todos_id_tasksof_POST_malformed extends BaseTestClass {
   @Test
   public void todosCreateTaskMalformedJSON() throws IOException, InterruptedException {
     var validId = 1; // Any todo that exists

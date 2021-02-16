@@ -33,12 +33,17 @@
       <artifactId>jackson-databind</artifactId>
       <version>2.12.1</version>
     </dependency>
-      <dependency>
-          <groupId>org.junit.jupiter</groupId>
-          <artifactId>junit-jupiter</artifactId>
-          <version>RELEASE</version>
-          <scope>test</scope>
-      </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>RELEASE</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.sf.randomjunit</groupId>
+      <artifactId>random-junit</artifactId>
+      <version>1.0.3</version>
+    </dependency>
   </dependencies>
 
   <build>
