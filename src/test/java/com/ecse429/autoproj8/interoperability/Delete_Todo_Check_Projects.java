@@ -2,11 +2,11 @@ package com.ecse429.autoproj8.interoperability;
 
 import com.ecse429.autoproj8.BaseTestClass;
 
-import com.ecse429.autoproj8.models.Project;
 import com.ecse429.autoproj8.models.Todo;
 
 import org.junit.Test;
 import static com.ecse429.autoproj8.todos.todos_id.Todos_id__DELETE.deleteTodo;
+import static com.ecse429.autoproj8.projects.projects_id_tasks_.Projects_id_tasks__GET.request;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.IOException;
@@ -17,14 +17,13 @@ import java.util.List;
 public class Delete_Todo_Check_Projects extends BaseTestClass {
   @Test
   public void delete_Todo_Check_Projects() throws IOException, InterruptedException, URISyntaxException {
-    int todoId = 1;
-    List<Todo> before = null;//get Tasks of project todosGetTasksOfForId(todoId);
+    List<Todo> before = request(); // get todos for project with id = 1
 
     Todo chosen = before.get(0); // choose one
 
     deleteTodo(chosen.getId());
 
-    List<Project> after = null;//get Tasks of project todosGetTasksOfForId(todoId);
+    List<Todo> after = request(); // id = 1
     assertFalse(after.contains(chosen), "The project <-> todo relationship was deleted.");
   }
 }

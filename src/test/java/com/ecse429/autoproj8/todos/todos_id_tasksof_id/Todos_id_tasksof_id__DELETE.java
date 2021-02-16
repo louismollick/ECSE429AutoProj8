@@ -42,9 +42,9 @@ public class Todos_id_tasksof_id__DELETE extends BaseTestClass {
 
     assertNull(todo.getTasksof());
 
-    // restart server
-    Shutdown.shutdown();
-    Runtime rt = Runtime.getRuntime();
-    rt.exec("java -jar runTodoManagerRestAPI-1.5.5.jar");
+    // // restart server
+    // Shutdown.shutdown();
+    // Runtime rt = Runtime.getRuntime();
+    // rt.exec("java -jar runTodoManagerRestAPI-1.5.5.jar");
   }
 }

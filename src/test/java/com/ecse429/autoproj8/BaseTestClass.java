@@ -13,13 +13,13 @@ public class BaseTestClass {
       // Start server
       Runtime rt = Runtime.getRuntime();
       rt.exec("java -jar runTodoManagerRestAPI-1.5.5.jar");
-      Thread.sleep(500);
+      Thread.sleep(1000);
   }
 
   @AfterClass
   public static void shutdown() throws IOException, InterruptedException {
       // Shutdown server
       Shutdown.shutdown();
-      Thread.sleep(500);
+      Thread.sleep(1000);
   }
 }

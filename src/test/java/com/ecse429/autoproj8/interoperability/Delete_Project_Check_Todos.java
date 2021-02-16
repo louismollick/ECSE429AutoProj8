@@ -2,12 +2,11 @@ package com.ecse429.autoproj8.interoperability;
 
 import com.ecse429.autoproj8.BaseTestClass;
 
-import com.ecse429.autoproj8.models.Category;
 import com.ecse429.autoproj8.models.Project;
 
 import org.junit.Test;
 import static com.ecse429.autoproj8.todos.todos_id_tasksof.Todos_id_tasksof_GET.todosGetTasksOfForId;
-// import static com.ecse429.autoproj8.projects.projects_
+import static com.ecse429.autoproj8.projects.projects_id_.Projects_id__DELETE.deleteProject;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.IOException;
@@ -23,7 +22,7 @@ public class Delete_Project_Check_Todos extends BaseTestClass {
 
     Project chosen = before.get(0);
 
-    //deleteProject(chosen.getId());
+    deleteProject(chosen.getId()); 
 
     List<Project> after = todosGetTasksOfForId(todoId);
     assertFalse(after.contains(chosen), "The project <-> todo relationship was deleted.");
