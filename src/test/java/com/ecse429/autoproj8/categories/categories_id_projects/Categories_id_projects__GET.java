@@ -1,4 +1,5 @@
 package com.ecse429.autoproj8.categories.categories_id_projects;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -11,6 +12,7 @@ import java.util.List;
 import com.ecse429.autoproj8.BaseTestClass;
 import com.ecse429.autoproj8.models.Reference;
 import com.ecse429.autoproj8.models.Category;
+import com.ecse429.autoproj8.models.Project;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.Test;
@@ -24,7 +26,7 @@ public class Categories_id_projects__GET extends BaseTestClass{
     private static final int ID = 1;
     private static final String CATEGORIES_URL = API_URI + "/categories/" + ID + "/projects";
 
-  public static List<Category> categoriesGetIDOne(int id) throws IOException, InterruptedException {
+  public static List<Project> categoriesGetIDOne(int id) throws IOException, InterruptedException {
     var client = HttpClient.newHttpClient();
     var request = HttpRequest.newBuilder().uri(URI.create(CATEGORIES_URL)).GET().build();
 
@@ -43,21 +45,22 @@ public class Categories_id_projects__GET extends BaseTestClass{
      * It can only parse this: [{"id": "1", ...}, {}]
      */
     var node = mapper.readTree(response.body());
-    Category[] arrayCategory = mapper.readValue(node.path("categories").toString(), Category[].class);
+    Project[] arrayCategory = mapper.readValue(node.path("projects").toString(), Project[].class);
     return Arrays.asList(arrayCategory);
   }
 
   @Test
   public void categoriesGetAllTest() throws IOException, InterruptedException {
-    List<Category> categories = categoriesGetIDOne(ID);
 
-    
+    String[] exclude = {"id", "categories", "projects", "todos"};
+    Categories_id_projects__POST.categoriesCreateCategory(new Reference(2), exclude);
 
-    // Default created Todos
-    Category office = new Category(1, "Office", "", null, null);
+    List<Project> projects = categoriesGetIDOne(ID);
 
-    System.out.println(office);
-    System.out.println(categories);
-    assertTrue(categories.contains(office));
+    Project compareProject = new Project(2, "", false, false, "", null, null);
+
+    System.out.println(compareProject);
+    System.out.println(projects);
+    assertTrue(projects.toString().contains(compareProject.toString()));
   }
 }
