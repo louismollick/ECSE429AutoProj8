@@ -40,13 +40,14 @@ public class Projects_id__GET {
     }
 
     @Test
-    public void projectsGetAllTest() throws IOException, InterruptedException {
+    public void projectsIdGET() throws IOException, InterruptedException {
         List<Project> projects = projectGetId();
         List<Reference> refs = List.of(new Reference(2), new Reference(1));
         Project office = new Project(1, "Office Work", false, false, "", null, refs);
 
         System.out.println(projects);
-        assertTrue(projects.contains(office));
+        System.out.println(office);
+        assertTrue(projects.toString().contains(office.toString()));
 
 
     }
