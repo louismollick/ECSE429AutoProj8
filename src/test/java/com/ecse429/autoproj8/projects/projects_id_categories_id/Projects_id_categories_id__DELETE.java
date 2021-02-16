@@ -24,7 +24,7 @@ import static org.junit.Assert.assertNotEquals;
 public class Projects_id_categories_id__DELETE {
 
   private static final int ID = 1;
-  private static final int ID2 = 2;
+  private static final int ID2 = 1;
 
   private static final String PROJECTS_URL = API_URI + "/projects/" + ID + "/categories/" + ID2;
 
@@ -34,14 +34,14 @@ public class Projects_id_categories_id__DELETE {
     var request = HttpRequest.newBuilder().uri(URI.create(PROJECTS_URL)).DELETE().build();
 
     var response = client.send(request, BodyHandlers.ofString());
-    assertEquals(response.statusCode(), 200);
+    assertEquals(200, response.statusCode());
   }
 
   @Test
   public void projectsDeleteCategoriesIDTest() throws IOException, InterruptedException {
     
     Reference ref = new Reference(1);
-    String[] exclude = {"categories", "id", "todos"};
+    String[] exclude = {"projects", "projects", "todos"};
 
     Projects_id_categories__POST.projectsCreateCategory(ref, exclude);
     List<Project> cat = Projects__GET.projectsGetAll();
