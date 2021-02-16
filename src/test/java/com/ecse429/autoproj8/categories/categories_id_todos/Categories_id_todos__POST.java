@@ -30,7 +30,7 @@ public class Categories_id_todos__POST extends BaseTestClass{
   private static final String CATEGORIES_URL = API_URI + "/categories/" + ID + "/todos";
 
   
-  public static void categoriesCreateCategory(Reference reference, String[] exclude) throws IOException, InterruptedException {
+  public static void categoriesCreateTodo(Reference reference, String[] exclude) throws IOException, InterruptedException {
     var mapper = new ObjectMapper();
     var client = HttpClient.newHttpClient();
     var requestBody = mapper.writeValueAsString(reference);
@@ -54,14 +54,14 @@ public class Categories_id_todos__POST extends BaseTestClass{
   }
 
   @Test
-  public void categoriesIdPOST() throws IOException, InterruptedException {
+  public void categoriesPOST() throws IOException, InterruptedException {
     // Dummy request category
     //Category modifiedCategory = new Category(1, "Modified Category", "Valid Category description", null, null);
     Reference ref = new Reference(1);
 
     // POST valid category
     String[] exclude = {"id", "categories", "projects"};
-    categoriesCreateCategory(ref, exclude);
+    categoriesCreateTodo(ref, exclude);
 
     
 

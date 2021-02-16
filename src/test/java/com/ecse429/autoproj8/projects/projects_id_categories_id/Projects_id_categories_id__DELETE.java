@@ -29,7 +29,7 @@ public class Projects_id_categories_id__DELETE extends BaseTestClass {
 
   private static final String PROJECTS_URL = API_URI + "/projects/" + ID + "/categories/" + ID2;
 
-  public static void deleteProject(int id, int id2) throws IOException, InterruptedException {
+  public static void deleteProjectCategories() throws IOException, InterruptedException {
     var client = HttpClient.newHttpClient();
   
     var request = HttpRequest.newBuilder().uri(URI.create(PROJECTS_URL)).DELETE().build();
@@ -48,7 +48,7 @@ public class Projects_id_categories_id__DELETE extends BaseTestClass {
     List<Project> cat = Projects__GET.projectsGetAll();
     System.out.println(cat);
 
-    deleteProject(ID, ID2);
+    deleteProjectCategories();
 
     System.out.println(ref);
     System.out.println(cat);

@@ -24,7 +24,7 @@ public class Projects_id__HEAD extends BaseTestClass {
     private static final int ID = 1;
   private static final String PROJECTS_URL = API_URI + "/projects/" + ID;
 
-  public static HttpHeaders projectsGetHeaders() throws IOException, InterruptedException {
+  public static HttpHeaders projectsGetHeadersID() throws IOException, InterruptedException {
     var client = HttpClient.newHttpClient();
     var request = HttpRequest.newBuilder().uri(URI.create(PROJECTS_URL)).method("HEAD", HttpRequest.BodyPublishers.noBody()).build();
 
@@ -37,7 +37,7 @@ public class Projects_id__HEAD extends BaseTestClass {
 
   @Test
   public void projectsGetAllTest() throws IOException, InterruptedException {
-    HttpHeaders todos_headers = projectsGetHeaders();
+    HttpHeaders todos_headers = projectsGetHeadersID();
 
     assertTrue(todos_headers.firstValue("Content-Type").toString().equals("Optional[application/json]"));
   }

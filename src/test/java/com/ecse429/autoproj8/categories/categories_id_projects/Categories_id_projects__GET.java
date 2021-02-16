@@ -26,7 +26,7 @@ public class Categories_id_projects__GET extends BaseTestClass{
     private static final int ID = 1;
     private static final String CATEGORIES_URL = API_URI + "/categories/" + ID + "/projects";
 
-  public static List<Project> categoriesGetIDOne(int id) throws IOException, InterruptedException {
+  public static List<Project> categoriesGetProjects() throws IOException, InterruptedException {
     var client = HttpClient.newHttpClient();
     var request = HttpRequest.newBuilder().uri(URI.create(CATEGORIES_URL)).GET().build();
 
@@ -50,12 +50,12 @@ public class Categories_id_projects__GET extends BaseTestClass{
   }
 
   @Test
-  public void categoriesGetAllTest() throws IOException, InterruptedException {
+  public void categoriesGetProjectsTest() throws IOException, InterruptedException {
 
     String[] exclude = {"id", "categories", "projects", "todos"};
     Categories_id_projects__POST.categoriesCreateCategory(new Reference(2), exclude);
 
-    List<Project> projects = categoriesGetIDOne(ID);
+    List<Project> projects = categoriesGetProjects();
 
     Project compareProject = new Project(2, "", false, false, "", null, null);
 

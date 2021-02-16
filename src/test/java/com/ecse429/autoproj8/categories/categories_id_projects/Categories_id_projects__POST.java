@@ -52,7 +52,7 @@ public class Categories_id_projects__POST extends BaseTestClass{
   }
 
   @Test
-  public void categoriesIdPOST() throws IOException, InterruptedException {
+  public void categoriesPOST() throws IOException, InterruptedException {
     // Dummy request category
     //Category modifiedCategory = new Category(1, "Modified Category", "Valid Category description", null, null);
     Reference ref = new Reference(2);

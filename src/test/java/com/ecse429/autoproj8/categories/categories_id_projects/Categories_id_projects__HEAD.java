@@ -25,7 +25,7 @@ public class Categories_id_projects__HEAD extends BaseTestClass{
     private static final int ID = 1;
   private static final String CATEGORIES_URL = API_URI + "/categories/" + ID + "/projects";
 
-  public static HttpHeaders categoriesGetHeaders(int id) throws IOException, InterruptedException {
+  public static HttpHeaders categoriesProjectsGetHeaders(int id) throws IOException, InterruptedException {
     var client = HttpClient.newHttpClient();
     var request = HttpRequest.newBuilder().uri(URI.create(CATEGORIES_URL)).method("HEAD", HttpRequest.BodyPublishers.noBody()).build();
 
@@ -37,8 +37,8 @@ public class Categories_id_projects__HEAD extends BaseTestClass{
   }
 
   @Test
-  public void todosGetAllTest() throws IOException, InterruptedException {
-    HttpHeaders todos_headers = categoriesGetHeaders(ID);
+  public void categoriesProjectsHEADTest() throws IOException, InterruptedException {
+    HttpHeaders todos_headers = categoriesProjectsGetHeaders(ID);
 
     assertTrue(todos_headers.firstValue("Content-Type").toString().equals("Optional[application/json]"));
   }
