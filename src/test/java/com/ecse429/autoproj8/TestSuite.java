@@ -58,7 +58,7 @@ import com.ecse429.autoproj8.todos.todos_id_tasksof_id.Todos_id_tasksof_id__DELE
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-@RunWith(Suite.class)
+@RunWith(RandomSuiteRunner.class)
 @Suite.SuiteClasses({
         Todos__GET.class,
         Todos__HEAD.class,
