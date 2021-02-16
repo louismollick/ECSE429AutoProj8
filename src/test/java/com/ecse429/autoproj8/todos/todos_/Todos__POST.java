@@ -10,7 +10,6 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
 
 import com.ecse429.autoproj8.BaseTestClass;
-import com.ecse429.autoproj8.models.Reference;
 import com.ecse429.autoproj8.models.Todo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;

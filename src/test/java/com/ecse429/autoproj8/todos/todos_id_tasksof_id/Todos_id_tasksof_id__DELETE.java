@@ -9,7 +9,6 @@ import java.net.http.HttpResponse.BodyHandlers;
 
 import com.ecse429.autoproj8.BaseTestClass;
 import com.ecse429.autoproj8.models.Todo;
-import com.ecse429.autoproj8.shutdown.Shutdown;
 import com.ecse429.autoproj8.todos.todos_id.Todos_id__GET;
 
 import org.junit.Test;
@@ -41,10 +40,5 @@ public class Todos_id_tasksof_id__DELETE extends BaseTestClass {
     Todo todo = Todos_id__GET.todosGetID(todoID);
 
     assertNull(todo.getTasksof());
-
-    // // restart server
-    // Shutdown.shutdown();
-    // Runtime rt = Runtime.getRuntime();
-    // rt.exec("java -jar runTodoManagerRestAPI-1.5.5.jar");
   }
 }
