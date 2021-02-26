@@ -4,10 +4,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.ecse429</groupId>
-  <artifactId>ECSE429AutoProj8</artifactId>
+  <artifactId>projectA</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>ECSE429AutoProj8</name>
+  <name>projectA</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
