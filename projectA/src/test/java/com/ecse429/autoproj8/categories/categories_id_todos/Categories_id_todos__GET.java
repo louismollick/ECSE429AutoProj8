@@ -24,7 +24,7 @@ public class Categories_id_todos__GET extends BaseTestClass{
     private static final int ID = 1;
     private static final String CATEGORIES_URL = API_URI + "/categories/" + ID + "/todos";
 
-  public static List<Category> categoriesGetIDOne(int id) throws IOException, InterruptedException {
+  public static List<Category> categoriesGetTodo() throws IOException, InterruptedException {
     var client = HttpClient.newHttpClient();
     var request = HttpRequest.newBuilder().uri(URI.create(CATEGORIES_URL)).GET().build();
 
@@ -48,8 +48,8 @@ public class Categories_id_todos__GET extends BaseTestClass{
   }
 
   @Test
-  public void categoriesGetAllTest() throws IOException, InterruptedException {
-    List<Category> categories = categoriesGetIDOne(ID);
+  public void categoriesGetTodolTest() throws IOException, InterruptedException {
+    List<Category> categories = categoriesGetTodo();
 
     // Default created Todos
     Category office = new Category(1, "Office", "", null, null);

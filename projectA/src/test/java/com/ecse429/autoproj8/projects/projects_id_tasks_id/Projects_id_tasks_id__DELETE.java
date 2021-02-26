@@ -29,7 +29,7 @@ public class Projects_id_tasks_id__DELETE extends BaseTestClass {
 
   private static final String PROJECTS_URL = API_URI + "/projects/" + ID + "/tasks/" + ID2;
 
-  public static void deleteProject(int id, int id2) throws IOException, InterruptedException {
+  public static void deleteProjectTasks() throws IOException, InterruptedException {
     var client = HttpClient.newHttpClient();
   
     var request = HttpRequest.newBuilder().uri(URI.create(PROJECTS_URL)).DELETE().build();
@@ -47,13 +47,9 @@ public class Projects_id_tasks_id__DELETE extends BaseTestClass {
     Projects_id_tasks__POST.projectsCreateTask(ref, exclude);
     List<Project> cat = Projects__GET.projectsGetAll();
 
-    deleteProject(ID, ID2);
+    deleteProjectTasks();
 
     assertFalse(cat.contains(ref));
 
-    // restart server
-    Shutdown.shutdown();
-    Runtime rt = Runtime.getRuntime();
-    rt.exec("java -jar runTodoManagerRestAPI-1.5.5.jar");
   }
 }

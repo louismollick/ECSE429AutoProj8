@@ -29,7 +29,7 @@ public class Categories_id_todos_id__DELETE extends BaseTestClass{
 
   private static final String CATEGORIES_URL = API_URI + "/categories/" + ID + "/todos/" + ID2;
 
-  public static void deleteCategory(int id, int id2) throws IOException, InterruptedException {
+  public static void deleteCategoryTodo() throws IOException, InterruptedException {
     var client = HttpClient.newHttpClient();
   
     var request = HttpRequest.newBuilder().uri(URI.create(CATEGORIES_URL)).DELETE().build();
@@ -47,7 +47,7 @@ public class Categories_id_todos_id__DELETE extends BaseTestClass{
     Categories_id_projects__POST.categoriesCreateCategory(ref, exclude);
     List<Category> cat = Categories__GET.categoriesGetAll();
 
-    deleteCategory(ID, ID2);
+    deleteCategoryTodo();
 
     assertFalse(cat.contains(ref));
 

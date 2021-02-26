@@ -29,7 +29,7 @@ public class Categories_id_projects_id__DELETE extends BaseTestClass{
 
   private static final String CATEGORIES_URL = API_URI + "/categories/" + ID + "/projects/" + ID2;
 
-  public static void deleteCategory(int id, int id2) throws IOException, InterruptedException {
+  public static void categoriesDeleteProjects() throws IOException, InterruptedException {
     var client = HttpClient.newHttpClient();
   
     var request = HttpRequest.newBuilder().uri(URI.create(CATEGORIES_URL)).DELETE().build();
@@ -39,7 +39,7 @@ public class Categories_id_projects_id__DELETE extends BaseTestClass{
   }
 
   @Test
-  public void categoriesDeleteIDTest() throws IOException, InterruptedException {
+  public void categoriesProjectDeleteTest() throws IOException, InterruptedException {
     
     Reference ref = new Reference(1);
     String[] exclude = {"id", "categories", "projects", "todos"};
@@ -48,15 +48,11 @@ public class Categories_id_projects_id__DELETE extends BaseTestClass{
     List<Category> cat = Categories__GET.categoriesGetAll();
     System.out.println(cat);
 
-    deleteCategory(ID, ID2);
+    categoriesDeleteProjects();
 
     System.out.println(ref);
     System.out.println(cat);
     assertFalse(cat.contains(ref));
 
-    // restart server
-    Shutdown.shutdown();
-    Runtime rt = Runtime.getRuntime();
-    rt.exec("java -jar runTodoManagerRestAPI-1.5.5.jar");
   }
 }

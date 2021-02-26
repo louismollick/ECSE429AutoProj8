@@ -48,7 +48,7 @@ public class Categories_id__GET extends BaseTestClass {
   }
 
   @Test
-  public void categoriesGetAllTest() throws IOException, InterruptedException {
+  public void categoriesIdGET() throws IOException, InterruptedException {
     List<Category> categories = categoriesGetIDOne(ID);
 
     // Default created Todos

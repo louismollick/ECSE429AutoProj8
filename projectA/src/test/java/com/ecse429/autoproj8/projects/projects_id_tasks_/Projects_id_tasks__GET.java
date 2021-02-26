@@ -25,7 +25,7 @@ public class Projects_id_tasks__GET extends BaseTestClass {
     private static final int ID = 1;
     private static final String PROJECTS_URL = API_URI + "/projects/" + ID + "/tasks";
     
-    public static List<Todo> request() throws IOException, InterruptedException {
+    public static List<Todo> projectsGetTasks() throws IOException, InterruptedException {
 
         var client = HttpClient.newHttpClient();
      var request = HttpRequest.newBuilder().uri(URI.create(PROJECTS_URL)).GET().build();
@@ -44,7 +44,7 @@ public class Projects_id_tasks__GET extends BaseTestClass {
 
     @Test
     public void projectsIdTasksGET() throws IOException, InterruptedException {
-        List<Todo> projects = request();
+        List<Todo> projects = projectsGetTasks();
         
         Todo scan = new Todo(1, "scan paperwork", false, "", List.of(new Reference(1)), List.of(new Reference(1)));
 

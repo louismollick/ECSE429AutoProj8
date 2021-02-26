@@ -28,10 +28,10 @@ public class Categories_id__POST extends BaseTestClass {
 
   public static Category todosCreateCategory(Category category) throws IOException, InterruptedException {
     String[] exlc = {};
-    return categoriesCreateCategory(category, exlc);
+    return categoriesCreateCategoryID(category, exlc);
   }
   
-  public static Category categoriesCreateCategory(Category category, String[] exclude) throws IOException, InterruptedException {
+  public static Category categoriesCreateCategoryID(Category category, String[] exclude) throws IOException, InterruptedException {
     var mapper = new ObjectMapper();
     var client = HttpClient.newHttpClient();
     var requestBody = mapper.writeValueAsString(category);
@@ -60,7 +60,7 @@ public class Categories_id__POST extends BaseTestClass {
 
     // POST valid category
     String[] exclude = {"id", "categories"};
-    Category responseCategory = categoriesCreateCategory(modifiedCategory, exclude);
+    Category responseCategory = categoriesCreateCategoryID(modifiedCategory, exclude);
 
     // Verify it now exists
     List<Category> newCategory = Categories__GET.categoriesGetAll();
