@@ -9,14 +9,14 @@ Feature: Update a Todo
 
     Given the Todo Manager serivce is running
     And the following todo exists:
-      | id | title          | done  | description |
-      | 1  | scan paperwork | false |             |
+      | id | title          | doneStatus | description |
+      | 1  | scan paperwork | false      |             |
 
   Scenario: Update todo with all fields set (Success Flow)
 
-    When I update the todo with id "1" to the following fields:
-      | title                        | doneStatus | description     |
-      | scan very important document | true       | need to do asap |
+    When I update the todo the following fields:
+      | id | title                        | doneStatus | description     |
+      | 1  | scan very important document | true       | need to do asap |
     Then the system will not show an error message
     And the system will have successfully updated the todo
 

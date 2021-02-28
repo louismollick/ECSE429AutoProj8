@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.Arrays;
 import java.util.List;
@@ -11,6 +12,8 @@ import java.util.List;
 import com.ecse429.autoproj8.partA.BaseTestClass;
 import com.ecse429.autoproj8.models.Reference;
 import com.ecse429.autoproj8.models.Todo;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.Test;
@@ -23,14 +26,28 @@ public class Todos__GET extends BaseTestClass {
 
   private static final String TODOS_URL = API_URI + "/todos";
 
-  public static List<Todo> todosGetAll() throws IOException, InterruptedException {
+  public static HttpResponse<String> requestTodosGetAll(String query) throws IOException, InterruptedException {
+    var client = HttpClient.newHttpClient();
+    var request = HttpRequest.newBuilder().uri(URI.create(TODOS_URL + query)).GET().build();
+    return client.send(request, BodyHandlers.ofString());
+  }
+
+  public static HttpResponse<String> requestTodosGetAll() throws IOException, InterruptedException {
     var client = HttpClient.newHttpClient();
     var request = HttpRequest.newBuilder().uri(URI.create(TODOS_URL)).GET().build();
+    return client.send(request, BodyHandlers.ofString());
+  }
 
-    var response = client.send(request, BodyHandlers.ofString());
+  public static List<Todo> todosGetAll() throws IOException, InterruptedException {
+    var response = requestTodosGetAll();
 
     assertEquals(response.statusCode(), 200);
 
+    return extractTodosList(response);
+  }
+
+  public static List<Todo> extractTodosList(HttpResponse<String> response)
+      throws JsonMappingException, JsonProcessingException {
     var mapper = new ObjectMapper();
 
     /**

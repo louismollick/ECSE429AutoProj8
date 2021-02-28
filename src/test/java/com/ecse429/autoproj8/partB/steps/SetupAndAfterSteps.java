@@ -3,10 +3,10 @@ package com.ecse429.autoproj8.partB.steps;
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 
-import static com.ecse429.autoproj8.partA.shutdown.Shutdown.shutdown;
 import static org.junit.Assert.fail;
 
 import static com.ecse429.autoproj8.partA.todos.todos_.Todos__HEAD.todosGetHeaders;
+import static com.ecse429.autoproj8.partA.shutdown.Shutdown.shutdown;
 
 import java.io.IOException;
 
@@ -22,9 +22,15 @@ public class SetupAndAfterSteps {
 
   @After
   public void resetToInitialConditions() throws IOException, InterruptedException {
-    shutdown(); // after each scenario, shut down
-    Thread.sleep(1000);
-    Runtime.getRuntime().exec("java -jar runTodoManagerRestAPI-1.5.5.jar"); // boot up again
-    Thread.sleep(1000);
+    try {
+      todosGetHeaders();// only turn off/on the server if it was on before
+      shutdown(); // after each scenario, shut down
+      Thread.sleep(1000);
+      Runtime.getRuntime().exec("java -jar runTodoManagerRestAPI-1.5.5.jar"); // boot up again
+      Thread.sleep(1000);
+    } catch (Exception e) {
+      // the server was turned off, don't turn it on & let the tests fail
+    }
+
   }
 }

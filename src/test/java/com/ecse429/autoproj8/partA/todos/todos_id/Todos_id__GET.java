@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.Arrays;
 import java.util.List;
@@ -21,12 +22,16 @@ import static org.junit.Assert.assertTrue;
 // GET /todos/:id
 public class Todos_id__GET extends BaseTestClass {
 
-  public static Todo todosGetID(int id) throws IOException, InterruptedException {
+  public static HttpResponse<String> requestTodosGetID(int id) throws IOException, InterruptedException {
     var client = HttpClient.newHttpClient();
     String TODOS_URL = API_URI + "/todos/" + id;
     var request = HttpRequest.newBuilder().uri(URI.create(TODOS_URL)).GET().build();
 
-    var response = client.send(request, BodyHandlers.ofString());
+    return client.send(request, BodyHandlers.ofString());
+  }
+
+  public static Todo todosGetID(int id) throws IOException, InterruptedException {
+    var response = requestTodosGetID(id);
 
     assertEquals(response.statusCode(), 200);
 

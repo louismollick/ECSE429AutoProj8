@@ -1,8 +1,6 @@
 package com.ecse429.autoproj8.partB.steps;
 
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -29,5 +27,14 @@ public class ErrorMessageSteps {
   @Then("the system will show the error message {string}")
   public void the_system_will_show_the_error_message(String error) {
     assertTrue(context.getResponse().body().contains(error));
+  }
+
+  @Then("the system will show an error message")
+  public void the_system_will_show_an_error_message() {
+    var res = context.getResponse();
+    var status = res.statusCode();
+    assertFalse(status == 200 || status == 201);
+
+    assertTrue(res.body().contains("errorMessages"));
   }
 }

@@ -1,9 +1,7 @@
 package com.ecse429.autoproj8.partA.undocumented;
 
 import com.ecse429.autoproj8.partA.BaseTestClass;
-import com.ecse429.autoproj8.models.Reference;
 import com.ecse429.autoproj8.models.Todo;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.Test;
 
@@ -31,8 +29,6 @@ public class Projects_id_task_DELETE extends BaseTestClass {
 
     List <Todo> before = todosGetAll();
 
-    var mapper = new ObjectMapper();
-    var requestBody = mapper.writeValueAsString(new Reference (1));
     var request = HttpRequest.newBuilder().uri(URI.create(PROJECTS_URL)).DELETE().build();
     var response = client.send(request, BodyHandlers.ofString());
 

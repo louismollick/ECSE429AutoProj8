@@ -9,8 +9,8 @@ Feature: Assign Category to Todo
 
     Given the Todo Manager serivce is running
     And the following todo exists:
-      | id | title          | done  | description |
-      | 1  | scan paperwork | false |             |
+      | id | title          | doneStatus | description |
+      | 1  | scan paperwork | false      |             |
 
   Scenario: Category successfully assigned to todo (Success Flow)
 
