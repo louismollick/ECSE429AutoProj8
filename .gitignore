@@ -17,3 +17,5 @@ log/
 target/
 
 .vscode/
+
+bin/
