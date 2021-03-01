@@ -7,7 +7,7 @@ Feature: View my Todos
 
   Background: The Todo Manager service is running and todo exists
 
-    Given the Todo Manager serivce is running
+    Given the Todo Manager service is running
     And the following todos exist in the todo manager:
       | id | title           | doneStatus | description |
       | 1  | scan paperwork  | false      |             |

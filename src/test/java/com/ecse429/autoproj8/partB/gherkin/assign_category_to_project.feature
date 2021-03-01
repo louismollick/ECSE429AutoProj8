@@ -7,7 +7,7 @@ Feature: Assign Category to Project
 
   Background: The Todo Manager service is running and project exists
 
-    Given the Todo Manager serivce is running
+    Given the Todo Manager service is running
     And the following project exists:
       | id | title       | completed | active | description |
       | 1  | Office Work | false     | false  |             |

@@ -7,7 +7,7 @@ Feature: Assign Todo to a Category
 
   Background: The Todo Manager service is running and category exists
 
-    Given the Todo Manager serivce is running
+    Given the Todo Manager service is running
     And the following category exists:
       | id | title  | description |
       | 2  | Office |             |

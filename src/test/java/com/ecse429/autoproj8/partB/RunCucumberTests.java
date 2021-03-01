@@ -11,12 +11,15 @@ import static com.ecse429.autoproj8.partA.shutdown.Shutdown.shutdown;
 import java.io.IOException;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(plugin = { "pretty" })
+@CucumberOptions(
+        features = "src/test/java/com/ecse429/autoproj8/partB/gherkin/",
+        plugin = {"pretty"}
+)
 public class RunCucumberTests {
 
-  @AfterClass
-  public static void shutDownAfterAll() throws InterruptedException, IOException {
-    shutdown(); // after each scenario, shut down
-    Thread.sleep(1000);
-  }
+    @AfterClass
+    public static void shutDownAfterAll() throws InterruptedException, IOException {
+        shutdown(); // after each scenario, shut down
+        Thread.sleep(1000);
+    }
 }

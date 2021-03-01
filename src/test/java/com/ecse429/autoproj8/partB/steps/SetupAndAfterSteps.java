@@ -11,7 +11,7 @@ import static com.ecse429.autoproj8.partA.shutdown.Shutdown.shutdown;
 import java.io.IOException;
 
 public class SetupAndAfterSteps {
-  @Given("the Todo Manager serivce is running")
+  @Given("the Todo Manager service is running")
   public void the_todo_manager_service_is_running() throws Throwable {
     try {
       todosGetHeaders();// try any request to see if it works

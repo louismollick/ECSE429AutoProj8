@@ -7,7 +7,7 @@ Feature: Assign Category to Todo
 
   Background: The Todo Manager service is running and todo exists
 
-    Given the Todo Manager serivce is running
+    Given the Todo Manager service is running
     And the following todo exists:
       | id | title          | doneStatus | description |
       | 1  | scan paperwork | false      |             |
