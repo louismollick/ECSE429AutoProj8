@@ -1,11 +1,10 @@
 package com.ecse429.autoproj8.partB.steps;
 
+import com.ecse429.autoproj8.partB.TestContext;
 import io.cucumber.java.en.Then;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import com.ecse429.autoproj8.partB.TestContext;
 
 public class ErrorMessageSteps {
 

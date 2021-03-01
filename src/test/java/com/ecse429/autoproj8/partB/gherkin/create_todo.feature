@@ -22,7 +22,7 @@ Feature: Create a todo
       | homework | false      |             |
     Then the system will have successfully created the todo
 
-  Scenario: Todo already exists (Alternate Flow)
+  Scenario: Todo title already exists (Alternate Flow)
 
     Given the following todo exists:
       | id | title          | doneStatus | description |
