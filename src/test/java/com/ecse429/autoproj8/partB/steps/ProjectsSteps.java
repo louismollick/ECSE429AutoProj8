@@ -42,7 +42,7 @@ public class ProjectsSteps {
     }
 
     @Then("the project will have remained unchanged")
-    public void the_todo_will_have_remained_unchanged() throws IOException, InterruptedException {
+    public void the_project_will_have_remained_unchanged() throws IOException, InterruptedException {
         var prevProject = context.getProject();
         var newProject = projectGetId(prevProject.getId());
 

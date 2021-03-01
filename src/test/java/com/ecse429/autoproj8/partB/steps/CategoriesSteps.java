@@ -13,8 +13,10 @@ import java.util.List;
 import java.util.Map;
 
 import static com.ecse429.autoproj8.partA.categories.categories_.Categories__POST.requestCreateCategory;
+import static com.ecse429.autoproj8.partA.categories.categories_id.Categories_id__GET.categoriesGetID;
 import static com.ecse429.autoproj8.partA.categories.categories_id.Categories_id__GET.requestCategoriesGetId;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class CategoriesSteps {
 
@@ -46,5 +48,13 @@ public class CategoriesSteps {
     @Then("the system will have successfully created the category")
     public void category_created() {
         assertEquals(201, context.getResponse().statusCode());
+    }
+
+    @Then("the category will have remained unchanged")
+    public void the_category_will_have_remained_unchanged() throws IOException, InterruptedException {
+        var prevCategory = context.getCategory();
+        var newCategory = categoriesGetID(prevCategory.getId());
+
+        assertEquals(prevCategory, newCategory);
     }
 }
