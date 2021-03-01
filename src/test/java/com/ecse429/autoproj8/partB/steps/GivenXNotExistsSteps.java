@@ -1,5 +1,6 @@
 package com.ecse429.autoproj8.partB.steps;
 
+import com.ecse429.autoproj8.models.Category;
 import com.ecse429.autoproj8.models.Project;
 import com.ecse429.autoproj8.models.Todo;
 import com.ecse429.autoproj8.partB.TestContext;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import static com.ecse429.autoproj8.partA.categories.categories_.Categories__GET.categoriesGetAll;
 import static com.ecse429.autoproj8.partA.projects.projects_.Projects__GET.projectsGetAll;
 import static com.ecse429.autoproj8.partA.todos.todos_.Todos__GET.todosGetAll;
 import static org.junit.Assert.assertFalse;
@@ -38,5 +40,14 @@ public class GivenXNotExistsSteps {
 
         List<Project> allProjects = projectsGetAll();
         assertFalse(allProjects.contains(todo));
+    }
+
+    @Given("the following category does not exist:")
+    public void the_following_category_does_not_exist(List<Map<String, String>> c)
+            throws IOException, InterruptedException {
+        Category category = new ObjectMapper().convertValue(c.get(0), Category.class);
+
+        List<Category> allCategories = categoriesGetAll();
+        assertFalse(allCategories.contains(category));
     }
 }
