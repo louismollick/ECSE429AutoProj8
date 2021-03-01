@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 import static com.ecse429.autoproj8.partA.projects.projects_.Projects__POST.requestCreateProject;
+import static com.ecse429.autoproj8.partA.projects.projects_id_.Projects_id__GET.projectGetId;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class ProjectsSteps {
@@ -37,5 +39,13 @@ public class ProjectsSteps {
     @Then("the system will have successfully created the project")
     public void project_created() {
         assertNotNull(context.getProject().getTitle());
+    }
+
+    @Then("the project will have remained unchanged")
+    public void the_todo_will_have_remained_unchanged() throws IOException, InterruptedException {
+        var prevProject = context.getProject();
+        var newProject = projectGetId(prevProject.getId());
+
+        assertEquals(prevProject, newProject);
     }
 }
