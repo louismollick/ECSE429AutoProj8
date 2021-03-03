@@ -3,8 +3,6 @@ package com.ecse429.autoproj8.partB.steps;
 import com.ecse429.autoproj8.models.Todo;
 import com.ecse429.autoproj8.partB.TestContext;
 
-import static com.ecse429.autoproj8.partA.todos.todos_.Todos__GET.todosGetAll;
-import static com.ecse429.autoproj8.partA.todos.todos_.Todos__POST.todosCreateTodo;
 import static com.ecse429.autoproj8.partA.todos.todos_.Todos__POST.todosCreateTodorequest;
 import static com.ecse429.autoproj8.partA.todos.todos_id.Todos_id__GET.requestTodosGetID;
 import static com.ecse429.autoproj8.partA.todos.todos_id.Todos_id__GET.todosGetID;

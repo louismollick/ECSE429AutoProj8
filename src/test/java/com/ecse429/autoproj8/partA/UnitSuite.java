@@ -128,5 +128,5 @@ import org.junit.runners.Suite;
         Categories_id_todos_id__DELETE.class
 })
 
-public class TestSuite {
+public class UnitSuite {
 }

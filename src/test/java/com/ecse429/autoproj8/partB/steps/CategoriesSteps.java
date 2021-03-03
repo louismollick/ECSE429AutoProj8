@@ -40,7 +40,7 @@ public class CategoriesSteps {
 
         String[] exclude = {"id"};
 
-        HttpResponse response = requestCreateCategory(category, exclude);
+        HttpResponse<String> response = requestCreateCategory(category, exclude);
 
         context.setResponse(response);
     }
