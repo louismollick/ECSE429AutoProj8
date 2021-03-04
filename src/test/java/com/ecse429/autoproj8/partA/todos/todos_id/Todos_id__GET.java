@@ -50,6 +50,15 @@ public class Todos_id__GET extends BaseTestClass {
     return Arrays.asList(arrayTodo).get(0);
   }
 
+  public static boolean todosGetID_cant_find_todo(int id) throws IOException, InterruptedException {
+    var response = requestTodosGetID(id);
+
+    boolean b = response.statusCode() ==  404;
+
+    return b;
+
+  }
+
   @Test
   public void todosGetIDTest() throws IOException, InterruptedException {
     Todo todo = todosGetID(1);

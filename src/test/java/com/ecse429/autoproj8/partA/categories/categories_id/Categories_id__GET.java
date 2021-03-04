@@ -13,6 +13,8 @@ import java.util.List;
 import com.ecse429.autoproj8.partA.BaseTestClass;
 import com.ecse429.autoproj8.models.Reference;
 import com.ecse429.autoproj8.models.Category;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.Test;
@@ -30,6 +32,11 @@ public class Categories_id__GET extends BaseTestClass {
     return client.send(request, BodyHandlers.ofString());
   }
 
+  public static Category extractCategory(HttpResponse<String> response) throws JsonMappingException, JsonProcessingException {
+    var mapper = new ObjectMapper();
+    return mapper.readValue(response.body(), Category.class);
+  }
+
   public static Category categoriesGetID(int id) throws IOException, InterruptedException {
     var response = requestCategoriesGetId(id);
 
@@ -38,10 +45,8 @@ public class Categories_id__GET extends BaseTestClass {
     var mapper = new ObjectMapper();
 
     /**
-     * Special case, we need to use readTree first since Jackson can't parse when we have this:
-     * {
-     *    "todos": [{"id": "1", ...}, {}]
-     * }
+     * Special case, we need to use readTree first since Jackson can't parse when we
+     * have this: { "todos": [{"id": "1", ...}, {}] }
      * 
      * It can only parse this: [{"id": "1", ...}, {}]
      */

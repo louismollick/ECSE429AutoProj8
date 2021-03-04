@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
-
+import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
 
@@ -31,6 +31,14 @@ public class Projects_id__DELETE extends BaseTestClass {
 
     var response = client.send(request, BodyHandlers.ofString());
     assertEquals(response.statusCode(), 200);
+  }
+
+  public static HttpResponse<String> requestProjectsDeleteId(int id) throws IOException, InterruptedException {
+    var client = HttpClient.newHttpClient();
+    String PROJECTS_URL = API_URI + "/projects/" + id;
+    var request = HttpRequest.newBuilder().uri(URI.create(PROJECTS_URL)).DELETE().build();
+
+    return client.send(request, BodyHandlers.ofString());
   }
 
   @Test

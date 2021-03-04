@@ -25,7 +25,7 @@ public class ErrorMessageSteps {
 
   @Then("the system will show the error message {string}")
   public void the_system_will_show_the_error_message(String error) {
-    assertTrue(context.getResponse().body().contains(error));
+    assertTrue(context.getResponse().body().contains(error), context.getResponse().body());
   }
 
   @Then("the system will show an error message")

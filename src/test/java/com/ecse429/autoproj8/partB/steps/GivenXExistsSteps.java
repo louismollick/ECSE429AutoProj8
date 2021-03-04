@@ -1,6 +1,7 @@
 package com.ecse429.autoproj8.partB.steps;
 
 import java.io.IOException;
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,10 +14,10 @@ import com.ecse429.autoproj8.partB.TestContext;
 
 import io.cucumber.java.en.Given;
 
-import static com.ecse429.autoproj8.partA.projects.projects_id_.Projects_id__PUT.requestUpdateProject;
-import static com.ecse429.autoproj8.partA.projects.projects_id_.Projects_id__PUT.extractProject;
+import static com.ecse429.autoproj8.partA.projects.projects_id_.Projects_id__PUT.*;
+//import static com.ecse429.autoproj8.partA.projects.projects_id_.Projects_id__POST.createProject;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static com.ecse429.autoproj8.partA.projects.projects_.Projects__POST.createProject;
+import static com.ecse429.autoproj8.partA.projects.projects_.Projects__POST.*;
 import static com.ecse429.autoproj8.partA.categories.categories_.Categories__POST.createCategory;
 import static com.ecse429.autoproj8.partA.categories.categories_id.Categories_id__PUT.requestUpdateCategory;
 import static com.ecse429.autoproj8.partA.categories.categories_id.Categories_id__PUT.extractCategory;
@@ -111,5 +112,57 @@ public class GivenXExistsSteps {
         }
 
         context.setTodoList(listTodos); // set to context for future steps
+    }
+
+    @Given("the following projects exist in the todo manager:")
+    public void the_following_projects_exist_in_the_todo_manager(List<Map<String, String>> projects)
+            throws IOException, InterruptedException {
+        var mapper = new ObjectMapper();
+
+        var listProjects = new ArrayList<Project>();
+        for (Map<String, String> map : projects) {
+            Project p = mapper.convertValue(map, Project.class);
+
+            // Try to update an existing todo with the specified id -- if it doesn't exist,
+            // create it
+            String[] excl = {"id"};
+            HttpResponse<String> res = requestUpdateProject(p, excl);
+            Project newProject;
+            if (res.statusCode() != 200 && res.statusCode() != 201) {
+                newProject = createProject(p, excl); // set to context for future steps
+            } else {
+                newProject = extractProject(res);
+            }
+            assertNotNull(newProject);
+            listProjects.add(newProject);
+        }
+
+        context.setProjectList(listProjects); // set to context for future steps
+    }
+
+    @Given("the following categories exist in the todo manager:")
+    public void the_following_categories_exist_in_the_todo_manager(List<Map<String, String>> categories)
+            throws IOException, InterruptedException {
+        var mapper = new ObjectMapper();
+
+        var listCategories = new ArrayList<Category>();
+        for (Map<String, String> map : categories) {
+            Category c = mapper.convertValue(map, Category.class);
+
+            // Try to update an existing todo with the specified id -- if it doesn't exist,
+            // create it
+            String[] excl = {"id"};
+            HttpResponse<String> res = requestUpdateCategory(c, excl);
+            Category newCategory;
+            if (res.statusCode() != 200 && res.statusCode() != 201) {
+                newCategory = createCategory(c, excl); // set to context for future steps
+            } else {
+                newCategory = extractCategory(res);
+            }
+            assertNotNull(newCategory);
+            listCategories.add(newCategory);
+        }
+
+        context.setCategoryList(listCategories); // set to context for future steps
     }
 }

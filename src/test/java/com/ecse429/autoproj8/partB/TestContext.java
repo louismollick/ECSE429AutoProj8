@@ -13,6 +13,8 @@ public class TestContext {
   private Category category;
   private Todo todo;
   private List<Todo> todoList;
+  private List<Project> projectList;
+  private List<Category> categoryList;
 
 
   public HttpResponse<String> getResponse() {
@@ -51,8 +53,25 @@ public class TestContext {
     return this.todoList;
   }
 
+  public List<Project> getProjectList() {
+    return this.projectList;
+  }
+
+  public List<Category> getCategoriesList() {
+    return this.categoryList;
+  }
+
+
   public void setTodoList(List<Todo> todoList) {
     this.todoList = todoList;
+  }
+
+  public void setProjectList(List<Project> projectList) {
+    this.projectList = projectList;
+  }
+
+  public void setCategoryList(List<Category> categoryList) {
+    this.categoryList = categoryList;
   }
   
 }

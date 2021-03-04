@@ -65,6 +65,8 @@ public class Projects_id__PUT extends BaseTestClass {
     return mapper.readValue(response.body(), Project.class);
   }
 
+  
+
   @Test
   public void projectsIdPUT() throws IOException, InterruptedException {
     // Dummy request project
