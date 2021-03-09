@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,6 +46,15 @@ public class Categories_id_todos__GET extends BaseTestClass{
     var node = mapper.readTree(response.body());
     Category[] arrayCategory = mapper.readValue(node.path("categories").toString(), Category[].class);
     return Arrays.asList(arrayCategory);
+  }
+
+  public static HttpResponse<String> categoriesGetTodosForIdrequest(Integer catid)
+      throws IOException, InterruptedException {
+    var client = HttpClient.newHttpClient();
+    String category_todo_URI = API_URI + "/categories/" + catid + "/todos";
+    var request = HttpRequest.newBuilder().uri(URI.create(category_todo_URI)).GET().build();
+
+    return client.send(request, BodyHandlers.ofString());
   }
 
   @Test

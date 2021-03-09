@@ -17,13 +17,13 @@ import java.util.List;
 public class Delete_Todo_Check_Projects extends BaseTestClass {
   @Test
   public void delete_Todo_Check_Projects() throws IOException, InterruptedException, URISyntaxException {
-    List<Todo> before = projectsGetTasks(); // get todos for project with id = 1
+    List<Todo> before = projectsGetTasks(1); // get todos for project with id = 1
 
     Todo chosen = before.get(0); // choose one
 
     deleteTodo(chosen.getId());
 
-    List<Todo> after = projectsGetTasks(); // id = 1
+    List<Todo> after = projectsGetTasks(1); // id = 1
     assertFalse(after.contains(chosen), "The project <-> todo relationship was deleted.");
   }
 }

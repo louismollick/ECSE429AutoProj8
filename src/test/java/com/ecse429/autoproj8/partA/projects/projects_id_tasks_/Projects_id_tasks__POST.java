@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
@@ -51,6 +52,17 @@ public class Projects_id_tasks__POST extends BaseTestClass {
    // return mapper.readValue(response.body(), Reference.class);
   }
 
+  public static HttpResponse<String> assignTodoToProject(int projectid, Reference reference) throws IOException, InterruptedException {
+    var mapper = new ObjectMapper();
+    var client = HttpClient.newHttpClient();
+    var requestBody = mapper.writeValueAsString(reference);
+
+    String proj_URL = API_URI + "/projects/" + projectid + "/tasks";
+    var request = HttpRequest.newBuilder().uri(URI.create(proj_URL)).POST(BodyPublishers.ofString(requestBody)).build();
+    return client.send(request, BodyHandlers.ofString());
+
+
+  }
   @Test
   public void projectsIdTaskPOST() throws IOException, InterruptedException {
     // Dummy request project

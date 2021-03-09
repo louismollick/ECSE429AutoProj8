@@ -55,6 +55,12 @@ public class Categories_id__GET extends BaseTestClass {
     return Arrays.asList(arrayCategory).get(0);
   }
 
+  public static boolean categoriesGetID_cant_find_category(int id) throws IOException, InterruptedException {
+    var response = requestCategoriesGetId(id);
+    boolean b = response.statusCode() == 404;
+    return b;
+  }
+
   @Test
   public void categoriesIdGET() throws IOException, InterruptedException {
     Category categories = categoriesGetID(1);

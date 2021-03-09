@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
@@ -33,6 +34,13 @@ public class Categories_id__DELETE extends BaseTestClass {
     assertEquals(response.statusCode(), 200);
   }
 
+  public static HttpResponse<String> requestCategoriesDeleteId(Integer id) throws IOException, InterruptedException {
+    var client = HttpClient.newHttpClient();
+    String CATEGORIES_URL = API_URI + "/categories/" + id;
+    var request = HttpRequest.newBuilder().uri(URI.create(CATEGORIES_URL)).DELETE().build();
+
+    return client.send(request, BodyHandlers.ofString());
+  }
   @Test
   public void categoriesDeleteIDTest() throws IOException, InterruptedException {
     deleteCategory(ID);
