@@ -1,4 +1,4 @@
-package com.ecse429.autoproj8.partB.steps;
+/* package com.ecse429.autoproj8.partB.steps;
 
 import com.ecse429.autoproj8.models.Category;
 import com.ecse429.autoproj8.models.Reference;
@@ -46,7 +46,7 @@ public class ViewTodoAssociatedWithCategory {
 
     @Then("the system will successfully show the todo with id {string} associated with the category with id {string}")
     public void the_system_will_show_todo_associated_with_category(String todoID, String catID) throws IOException, InterruptedException {
-        var todo = todosGetID(context.getTodo().getId());
+        Todo todo = todosGetID(context.getTodo().getId());
         Todo newTodo = todosGetID(Integer.parseInt(todoID));
         assertNotNull(todo);
 
@@ -60,3 +60,4 @@ public class ViewTodoAssociatedWithCategory {
     }
 
 }
+ */
