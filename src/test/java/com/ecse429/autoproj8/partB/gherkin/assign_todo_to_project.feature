@@ -4,7 +4,7 @@ Feature: Assign Task to a Project
 As a User I would like to assign a todo to a project
 so that I can indicate that the todo is part of that project
 
-Background: The Todo Manager service is running and category exists
+Background: The Todo Manager service is running and project exists
 
 Given the Todo Manager service is running
   And the following project exists:
@@ -27,9 +27,9 @@ Scenario: Task was already assigned to the category (Alternate Flow)
       | 3  | Prank Dwight | false      | office reference |
 
       And this todo is already assigned to the project wit id '1'
-     When I assign the todo with id '3' to the project wwith id '1'
+     When I assign the todo with id '3' to the project with id '1'
      Then the system will not show an error message
-     And the system will not have added aa duplicate task to the project
+     And the system will not have added a duplicate task to the project
 
 Scenario: Todo does not exist (Error Flow)
 

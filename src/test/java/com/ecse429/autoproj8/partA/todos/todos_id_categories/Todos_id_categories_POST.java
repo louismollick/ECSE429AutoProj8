@@ -39,6 +39,20 @@ public class Todos_id_categories_POST extends BaseTestClass {
     return client.send(request, BodyHandlers.ofString());
   }
 
+  public static HttpResponse<String> todosPOSTProject(Integer todoid, Reference project)
+      throws IOException, InterruptedException {
+    var mapper = new ObjectMapper();
+    var client = HttpClient.newHttpClient();
+    var requestBody = mapper.writeValueAsString(project);
+
+    String TODO_TASKSOF_URI = API_URI + "/todos/" + todoid + "/tasksof";
+
+    var request = HttpRequest.newBuilder().uri(URI.create(TODO_TASKSOF_URI)).POST(BodyPublishers.ofString(requestBody))
+        .build();
+
+    return client.send(request, BodyHandlers.ofString());
+  }
+
   @Test
   public void todosPOSTCategoryValid() throws IOException, InterruptedException, URISyntaxException {
     // Create a new Category

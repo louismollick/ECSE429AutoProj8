@@ -41,6 +41,20 @@ public class Projects_id_categories__POST extends BaseTestClass {
     return client.send(request, BodyHandlers.ofString());
   }
 
+  public static HttpResponse<String> assignTaskToProject(int projectID, Reference reference) throws IOException, InterruptedException {
+    var mapper = new ObjectMapper();
+    var client = HttpClient.newHttpClient();
+    var requestBody = mapper.writeValueAsString(reference);
+    var root = mapper.readTree(requestBody);
+
+    String PROJECTS_URL = API_URI + "/projects/" + projectID + "/tasks";
+  
+    var request = HttpRequest.newBuilder().uri(URI.create(PROJECTS_URL)).POST(BodyPublishers.ofString(root.toString()))
+        .build();
+
+    return client.send(request, BodyHandlers.ofString());
+  }
+
   @Test
   public void projectsIdCategoriesPOST() throws IOException, InterruptedException {
     Reference ref = new Reference(1);

@@ -48,13 +48,13 @@ public class Categories_id_todos__GET extends BaseTestClass{
     return Arrays.asList(arrayCategory);
   }
 
-  public static HttpResponse<String> categoriesGetTodosForIdrequest(Integer catid)
+  public static HttpResponse<String> categoriesGetTodosForIdrequest(Integer catId)
       throws IOException, InterruptedException {
-    var client = HttpClient.newHttpClient();
-    String category_todo_URI = API_URI + "/categories/" + catid + "/todos";
-    var request = HttpRequest.newBuilder().uri(URI.create(category_todo_URI)).GET().build();
-
-    return client.send(request, BodyHandlers.ofString());
+        var client = HttpClient.newHttpClient();
+        String Category_todo_URI = API_URI + "/categories/" + catId + "/todos";
+        var request = HttpRequest.newBuilder().uri(URI.create(Category_todo_URI)).GET().build();
+    
+        return client.send(request, BodyHandlers.ofString());
   }
 
   @Test

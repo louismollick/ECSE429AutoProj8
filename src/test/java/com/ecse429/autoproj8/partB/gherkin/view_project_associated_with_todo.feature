@@ -30,5 +30,6 @@ Scenario: The todo has no project associated with it
 
 Scenario: I request to see a project with an invalid todo id (Error Flow)
 
-     When I request to see the project associated with a todo with id '47'
-     Then the system will show the error message 'Could not find an instance with todos/47' 
+     Given no project exists with id '47'
+     When I request to see the project associated with a task with id '47'
+     Then the system will show an error message

@@ -33,6 +33,17 @@ public class Categories_id_todos__POST extends BaseTestClass{
    return client.send(request, BodyHandlers.ofString());
   }
 
+  public static HttpResponse<String> assignProjectToCategory(int catID, Reference reference) throws IOException, InterruptedException {
+    var mapper = new ObjectMapper();
+    var client = HttpClient.newHttpClient();
+    var requestBody = mapper.writeValueAsString(reference);
+    
+    String CATEGORIES_URL = API_URI + "/categories/" + catID + "/projects";
+    var request = HttpRequest.newBuilder().uri(URI.create(CATEGORIES_URL)).POST(BodyPublishers.ofString(requestBody))
+        .build();
+
+   return client.send(request, BodyHandlers.ofString());
+  }
   @Test
   public void categoriesPOST() throws IOException, InterruptedException {
     // Dummy request category

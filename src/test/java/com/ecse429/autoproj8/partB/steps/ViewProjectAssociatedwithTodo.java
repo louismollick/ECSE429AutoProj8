@@ -1,4 +1,4 @@
-/* package com.ecse429.autoproj8.partB.steps;
+package com.ecse429.autoproj8.partB.steps;
 
 import com.ecse429.autoproj8.models.Project;
 import com.ecse429.autoproj8.models.Reference;
@@ -32,19 +32,19 @@ import java.util.Map;
 public class ViewProjectAssociatedwithTodo {
     TestContext context;
 
-    public void ViewProjectAssociatedwithTodo(TestContext context) {
+    public ViewProjectAssociatedwithTodo(TestContext context) {
         this.context = context;
       }
 
   
 
-      @Given("I assign the todo with id {string} to the project with id {string}")
+      /*@Given("I assign the todo with id {string} to the project with id {string}")
       public void i_assign_the_todo_with_id_to_the_project_with_id(String todo, String project)
         throws NumberFormatException, IOException, InterruptedException {
           var res = assignTodoToProject(Integer.parseInt(project), new Reference(Integer.parseInt(todo)));
           context.setResponse(res);
         }
-
+*/
       @When("I request to see the project associated with a task with id {string}")
       public void i_request_to_see_all_tasks_associated_with_project(String id)
         throws NumberFormatException, IOException, InterruptedException {
@@ -53,9 +53,9 @@ public class ViewProjectAssociatedwithTodo {
         }
 
       @Then("the system will successfully show all the project with id {string} associated with the task with id {string}")
-      public void the_system_will_successfully_show_the_project_associated_with_todo(String id) throws IOException, InterruptedException {
+      public void the_system_will_successfully_show_the_project_associated_with_todo(String projId, String todoId) throws IOException, InterruptedException {
         var project = projectGetId(context.getProject().getId());
-        Project newProj = projectGetId(Integer.parseInt(id));
+        Project newProj = projectGetId(Integer.parseInt(projId));
         assertNotNull(project);
         assertTrue(project.toString().contains(newProj.toString()));
 
@@ -69,4 +69,3 @@ public class ViewProjectAssociatedwithTodo {
 
 
 }
- */

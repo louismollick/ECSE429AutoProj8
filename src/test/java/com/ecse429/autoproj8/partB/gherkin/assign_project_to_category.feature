@@ -27,12 +27,12 @@ Scenario: Project was already assigned to the category (Alternate Flow)
       | id | title       | completed | active | description |
       | 1  | Office Work | false     | false  |             |
       And this project is already assigned to the category with id '2'
-     When I assign the project with id '1' to the category with id '2'
-     Then the system will not show an error messge
+     When I assign project with id '1' to the category with id '2'
+     Then the system will not show an error message
       And the system will have not added a duplicate project to the category
 
 Scenario: Project does not exist (Error Flow)
    
     Given no project exists with id '12'
-     When I assign the project with id '12' to the category with id '2'
-     Then the system will show the error messge "Could not find thing matching value for id"
+     When I assign project with id '12' to the category with id '2'
+     Then the system will show the error message "Could not find thing matching value for id"

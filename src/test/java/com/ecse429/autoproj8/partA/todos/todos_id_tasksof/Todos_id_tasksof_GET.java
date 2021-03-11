@@ -24,10 +24,11 @@ import static org.junit.Assert.assertTrue;
 // GET /todos/id/tasksof
 public class Todos_id_tasksof_GET extends BaseTestClass {
 
-  public static HttpResponse<String> todosGetTasksOfForIdrequest(Integer todoid) throws IOException, InterruptedException {
+  public static HttpResponse<String> todosGetTasksOfForIdrequest(Integer todoid)
+      throws IOException, InterruptedException {
     var client = HttpClient.newHttpClient();
-    String TODO_TASKSOF_URI = API_URI + "/todos/" + todoid + "/tasksof";
-    var request = HttpRequest.newBuilder().uri(URI.create(TODO_TASKSOF_URI)).GET().build();
+    String TODO_CATEGORY_URI = API_URI + "/todos/" + todoid + "/categories";
+    var request = HttpRequest.newBuilder().uri(URI.create(TODO_CATEGORY_URI)).GET().build();
 
     return client.send(request, BodyHandlers.ofString());
   }
