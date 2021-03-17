@@ -1,22 +1,16 @@
 package com.ecse429.autoproj8.partB.steps;
 
 import com.ecse429.autoproj8.models.Category;
-import com.ecse429.autoproj8.models.Reference;
 import com.ecse429.autoproj8.models.Todo;
 import com.ecse429.autoproj8.partB.TestContext;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import static com.ecse429.autoproj8.partA.todos.todos_.Todos__GET.requestTodosGetAll;
-import static com.ecse429.autoproj8.partA.todos.todos_id.Todos_id__GET.requestTodosGetID;
 import static com.ecse429.autoproj8.partA.todos.todos_id_categories.Todos_id_categories_GET.*; 
-import static com.ecse429.autoproj8.partA.categories.categories_.Categories__GET.*;
-import static com.ecse429.autoproj8.partA.categories.categories_id_todos.Categories_id_todos__POST.assignTodoToCategory;
 import static com.ecse429.autoproj8.partA.categories.categories_id.Categories_id__GET.categoriesGetID;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
