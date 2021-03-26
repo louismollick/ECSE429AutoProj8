@@ -48,10 +48,37 @@ public class Categories_id__POST extends BaseTestClass {
         return client.send(request, BodyHandlers.ofString());
     }
 
+    public static HttpResponse<String> requestUpdateCategory_giveID(Category category, String[] exclude, int id) throws IOException, InterruptedException {
+        var mapper = new ObjectMapper();
+        var client = HttpClient.newHttpClient();
+        var requestBody = mapper.writeValueAsString(category);
+        var root = mapper.readTree(requestBody);
+
+        // Remove elements not allowed in request (ie id, list of objects etc)
+        for (String e : exclude) {
+            ((ObjectNode) root).remove(e);
+        }   
+        String URL = API_URI + "/categories/" + id;
+        var request = HttpRequest.newBuilder().uri(URI.create(URL)).POST(BodyPublishers.ofString(root.toString()))
+                .build();
+
+        return client.send(request, BodyHandlers.ofString());
+    }
+
     public static Category categoriesCreateCategoryID(Category category, String[] exclude) throws IOException, InterruptedException {
         var mapper = new ObjectMapper();
 
         var response = requestUpdateCategory(category, exclude);
+
+        assertEquals(200, response.statusCode());
+
+        return mapper.readValue(response.body(), Category.class);
+    }
+
+    public static Category categoriesCreateCategoryID_givenID(Category category, String[] exclude, int id) throws IOException, InterruptedException {
+        var mapper = new ObjectMapper();
+
+        var response = requestUpdateCategory_giveID(category, exclude, id);
 
         assertEquals(200, response.statusCode());
 
