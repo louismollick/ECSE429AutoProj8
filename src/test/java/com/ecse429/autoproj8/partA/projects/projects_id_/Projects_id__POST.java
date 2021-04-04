@@ -47,6 +47,33 @@ public class Projects_id__POST extends BaseTestClass {
         return client.send(request, BodyHandlers.ofString());
     }
 
+    public static HttpResponse<String> requestUpdateProject_giveID(Project project, String[] exclude, int id) throws IOException, InterruptedException {
+        var mapper = new ObjectMapper();
+        var client = HttpClient.newHttpClient();
+        var requestBody = mapper.writeValueAsString(project);
+        var root = mapper.readTree(requestBody);
+
+        // Remove elements not allowed in request (ie id, list of objects etc)
+        for (String e : exclude) {
+            ((ObjectNode) root).remove(e);
+        }   
+        String URL = API_URI + "/projects/" + id;
+        var request = HttpRequest.newBuilder().uri(URI.create(URL)).POST(BodyPublishers.ofString(root.toString()))
+                .build();
+
+        return client.send(request, BodyHandlers.ofString());
+    }
+
+    public static Project projectsCreateProjectID_givenID(Project project, String[] exclude, int id) throws IOException, InterruptedException {
+        var mapper = new ObjectMapper();
+
+        var response = requestUpdateProject_giveID(project, exclude, id);
+
+        assertEquals(200, response.statusCode());
+
+        return mapper.readValue(response.body(), Project.class);
+    }
+
     public static Project postProjectsID(Project project, String[] exclude) throws IOException, InterruptedException {
         var mapper = new ObjectMapper();
         var response = requestUpdateProject(project, exclude);
