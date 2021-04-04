@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse.BodyHandlers;
 
@@ -47,6 +48,35 @@ public class Todos_id__POST extends BaseTestClass {
 
     return mapper.readValue(response.body(), Todo.class);
   }
+
+  public static HttpResponse<String> requestUpdateTodo_giveID(Todo todo, String[] exclude, int id) throws IOException, InterruptedException {
+    var mapper = new ObjectMapper();
+    var client = HttpClient.newHttpClient();
+    var requestBody = mapper.writeValueAsString(todo);
+    var root = mapper.readTree(requestBody);
+
+    // Remove elements not allowed in request (ie id, list of objects etc)
+    for (String e : exclude) {
+        ((ObjectNode) root).remove(e);
+    }   
+    String URL = API_URI + "/todos/" + id;
+    var request = HttpRequest.newBuilder().uri(URI.create(URL)).POST(BodyPublishers.ofString(root.toString()))
+            .build();
+
+    return client.send(request, BodyHandlers.ofString());
+}
+
+
+public static Todo todosCreateTodoID_givenID(Todo todo, String[] exclude, int id) throws IOException, InterruptedException {
+  var mapper = new ObjectMapper();
+
+  var response = requestUpdateTodo_giveID(todo, exclude, id);
+
+  assertEquals(200, response.statusCode());
+
+  return mapper.readValue(response.body(), Todo.class);
+}
+
 
   @Test
   public void todosPostIDTest() throws IOException, InterruptedException {
